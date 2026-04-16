@@ -1,11 +1,16 @@
 ---
 name: easypanel
-description: Manage Easypanel servers via the undocumented tRPC API at /api/trpc. Use when the user wants to list/create/deploy/inspect projects, app services, databases (postgres/mysql/mongo/redis), docker compose stacks, domains, ports, env vars, or check system stats on an Easypanel instance.
+description: Manage Easypanel servers via the undocumented tRPC API at /api/trpc. Use when the user wants to list/create/deploy/inspect projects, app services, databases (postgres/mysql/mongo/redis/mariadb), docker compose stacks, domains, ports, env vars, or check system stats on an Easypanel instance.
 ---
 
 # Easypanel skill
 
-Talks to an Easypanel server through its tRPC API. No official REST docs exist — the API is undocumented but stable.
+Talks to an Easypanel server through its tRPC API. Easypanel calls it "undocumented but supported" — no official OpenAPI/docs page (`/docs/api` on easypanel.io 404s). Two third-party references:
+
+- https://samleinav.github.io/Easypanel-Api/ — hand-written docs for a subset of procedures. Accurate but incomplete (misses many real procedures).
+- https://github.com/Easypanel-Community/easypanel `src/utils/routes.ts` — 2023 TS SDK route map. **Stale in spots** — several listed paths 404 on current Easypanel (`enableService`, `disableService`, `exposeService`, `updatePorts`, `updateMounts`, `updateBackup`, `updateDomains`, `logs.getServiceLogs`, `settings.pruneDockerImages`, Traefik config).
+
+Every procedure path below was either verified against a live panel (Zod error = path+shape exist, or a successful call) or explicitly flagged as unverified.
 
 ## Setup (one-time per instance)
 
@@ -34,68 +39,129 @@ node scripts/easypanel.mjs <procedure> '<json-input>'
 # e.g.
 node scripts/easypanel.mjs projects.listProjects
 node scripts/easypanel.mjs projects.createProject '{"name":"blog"}'
-node scripts/easypanel.mjs services.app.deploy '{"projectName":"blog","serviceName":"web"}'
+node scripts/easypanel.mjs services.app.deployService '{"projectName":"blog","serviceName":"web"}'
 ```
 
 tRPC quirks:
-- **Queries** (list/inspect/stats) → GET with input as `?input=<url-encoded-json>`
-- **Mutations** (create/deploy/destroy/set*) → POST with body `{"json": <input>}`
-- The helper handles both automatically based on a hardcoded list; if a procedure is missing, pass `--mutation` or `--query` explicitly.
-- Responses unwrap `result.data.json` for you.
+- **Queries** → GET with `?input=<url-encoded-json>`; **mutations** → POST with body `{"json": <input>}`.
+- The helper picks GET vs POST from a prefix heuristic on the last path segment (`list`, `inspect`, `get`, `stats`, `status`, `fetch`, `read`, `show`, `can` → query). If a procedure misroutes, pass `--mutation` or `--query` explicitly. (`canCreateProject` is a query and needed `--query` with this heuristic.)
+- Responses unwrap `result.data.json` for you. Void mutations return `null` on success — that's the "worked" signal.
+- Errors: **404 `NOT_FOUND`** = wrong path; **500 with Zod-array message** = path exists, fix the input; **405 `METHOD_NOT_SUPPORTED`** = right path, wrong verb (try `--query`).
 
-## Procedure reference (verified)
+## ⚠️ Dangerous partial-input behavior on `update*` mutations
 
-**Projects**
-- `projects.listProjects` (query)
-- `projects.inspectProject` (query) — `{projectName}`
-- `projects.createProject` (mutation) — `{name}`
-- `projects.destroyProject` (mutation) — `{projectName}`
+**`services.<type>.update*` mutations REPLACE the field wholesale. Omitting an optional sub-field does not leave it unchanged — it sets it to null/empty.**
 
-**App services** (namespace: `services.app.*`)
-- `.create` — `{projectName, serviceName}`
-- `.inspect` (query) — `{projectName, serviceName}`
-- `.deploy`, `.start`, `.stop`, `.restart`, `.destroy` — `{projectName, serviceName}`
-- `.setSourceImage` — `{projectName, serviceName, image}`
-- `.setSourceGithub` — `{projectName, serviceName, owner, repo, ref, path?}`
-- `.setEnv` — `{projectName, serviceName, env}` (env is a `KEY=VALUE` newline string)
-- `.setResources` — `{projectName, serviceName, memoryLimit, memoryReservation, cpuLimit, cpuReservation}`
+Real example: calling `services.app.updateEnv '{"projectName":"x","serviceName":"y"}'` (to probe the shape) **wiped the service's env vars** because `env` is optional and defaulted to empty. Same for `updateBuild`, `updateResources`, `updateRedirects`, `updateDeploy`, `updateMaintenance`, `updateBasicAuth`.
 
-**Databases** — `services.{postgres,mysql,mongo,redis}.{create,inspect,destroy}`
-- Create shape: `{projectName, serviceName, password?, image?}`
+Rules:
+1. **Never pass a real `{projectName, serviceName}` to an unknown mutation just to probe its shape.** Probe with `{}` only — you'll get a Zod error naming the first missing field (usually `projectName`), confirming the path exists without mutating anything.
+2. **Before any `update*` call, `inspectService` first** and build the full config (existing values + your changes), then send. Do not send just the field you want to change.
+3. If you do wipe something by accident: `inspectService` won't help (it shows the post-wipe state). You need the source of truth (repo `.env`, another sibling service with the same config, etc.) to reconstruct it.
 
-**Compose** — `services.compose.{create,inspect,deploy}`
+## Procedure reference (verified live)
 
-**Domains / ports**
-- `domains.listDomains`, `.createDomain`, `.deleteDomain`
-- `ports.listPorts`, `.createPort`
+### Projects (`projects.*`)
+- `listProjects` (query, no input)
+- `listProjectsAndServices` (query, no input) — preferred for bulk inspection
+- `canCreateProject` (query, no input) — returns `true`/`false`. **Is a query despite the verb.**
+- `inspectProject` (query) — `{projectName}` — returns the project incl. all nested services, source, env, build, commit history
+- `createProject` (mutation) — `{name}`
+- `destroyProject` (mutation) — **`{name}`** (NOT `{projectName}` — verified via Zod)
 
-**System / monitoring** (namespace is `monitor.*`, not `system.*`)
-- `monitor.getSystemStats` (query) — current uptime, cpuInfo, load
-- `monitor.getAdvancedStats` (query) — historical cpu/memory arrays
-- `system.cleanup`, `system.prune`, `system.restart`, `system.reboot` (mutations — names unverified, probe first)
+### App services (`services.app.*`) — every service type shares the same method set: `services.{app,postgres,mysql,mongo,redis,mariadb,compose}.*`
 
-**Users**
-- `users.listUsers` (query), `users.generateApiToken`, `users.revokeApiToken`
+Lifecycle (mutations, `{projectName, serviceName}`):
+- `createService`, `inspectService` (query), `destroyService`
+- `deployService`
+- `startService`, `stopService`, `restartService` — **these replaced the 2023 `enableService`/`disableService`/`exposeService` which now 404**
+- `refreshDeployToken` — rotates per-service deploy webhook token
 
-There are ~347 total procedures. For anything not listed, try it via the helper — the server returns descriptive Zod validation errors that reveal the expected input shape.
+Source config (mutations, all on top of `{projectName, serviceName}`):
+- `updateSourceGithub` — `+ {owner, repo, ref, path}` (autoDeploy seen in responses but not required by Zod)
+- `updateSourceGit` — `+ {repo, ref, path}` (note: field is `repo`, not `repository` as the 2023 SDK claimed)
+- `updateSourceImage` — `+ {image, username?, password?}`
+- `updateSourceDockerfile` — `+ {dockerfile}` (inline contents)
+
+Service config (mutations, `{projectName, serviceName, ...}`) — **all wipe-on-omit; see warning above**:
+- `updateEnv` — `+ {env}` (newline-separated `KEY=VALUE` string; `\n` works, responses come back with `\r\n`)
+- `updateBuild` — `+ {build: {type, ...}}` — type is one of `"nixpacks"`, `"dockerfile"`, etc. Nixpacks: `{type:"nixpacks", nixpacksVersion:"1.34.1"}`. Dockerfile: `{type:"dockerfile", file:"Dockerfile"}`.
+- `updateResources` — `+ {resources: {memoryReservation, memoryLimit, cpuReservation, cpuLimit}}` (all numbers; nested per samleinav docs — flat form was not verified)
+- `updateRedirects`, `updateBasicAuth`, `updateDeploy`, `updateMaintenance` — shapes not fully probed; inspect first
+- mariadb-only: `updateAdvanced`
+
+Confirmed 404 on current Easypanel (don't try these):
+`enableService`, `disableService`, `exposeService`, `updatePorts`, `updateMounts`, `updateBackup`, `updateDomains`
+
+Redis-specific extras (`services.redis.*`): `updateCredentials`, `enableDbGate`, `disableDbGate`, `enableRedisCommander`, `disableRedisCommander`.
+
+### Monitor (`monitor.*`, all queries)
+- `getSystemStats` — host uptime, cpuInfo, load, memory, network
+- `getAdvancedStats` — historical time-series arrays (cpu/memory at intervals)
+- `getServiceStats` — `{projectName, serviceName, serviceType}` where serviceType is the namespace (`"app"`, `"postgres"`, etc.); returns live CPU/memory/network for one service
+- `getDockerTaskStats` — per-task actual vs desired replicas
+- `getMonitorTableData` — all containers, including foreign ones
+
+### Auth / users
+- `auth.login` (mutation) — `{email, password}`
+- `auth.logout` (mutation)
+- `auth.getSession` (query) — **not `auth.getUser`** (SDK is wrong); returns `{id, userId, expiresAt, demoMode, ...}`
+- `users.listUsers` (query)
+- `users.generateApiToken`, `users.revokeApiToken` (mutations)
+
+### Settings (`settings.*`) — many destructive; confirm before calling
+- Server: `restartEasypanel`, `getServerIp` (query), `refreshServerIp`
+- Panel: `getPanelDomain` (query), `setPanelDomain`
+- TLS: `getLetsEncryptEmail` (query), `setLetsEncryptEmail`
+- GitHub: `getGithubToken` (query), `setGithubToken`
+- Creds: `changeCredentials`
+
+Confirmed 404: `getTraefikCustomConfig`, `updateTraefikCustomConfig`, `restartTraefik`, `pruneDockerImages`, `pruneDockerBuilder`, `setPruneDockerDaily` — all listed in the 2023 SDK, all removed/renamed. Probe before documenting replacements.
+
+### Templates
+- `templates.createFromSchema` (mutation) — `{projectName, schema: {services: [...]}}` — bulk deploy a stack
+
+### Logs (WebSocket, not tRPC)
+Per samleinav docs:
+- `wss://<panel>/serviceLogs?token=<token>&service=<projectName>_<serviceName>&compose=<0|1>`
+
+Not REST — the 2023 SDK's `logs.getServiceLogs` doesn't exist on current panels. The tRPC helper can't drive this; use a WebSocket client separately.
+
+### Code upload (REST, not tRPC)
+- `POST /api/upload-code/{projectName}/{serviceName}` with multipart `file=<zip>` for deploy-without-git flows.
 
 ## Safety
 
-- `destroy*`, `prune`, `reboot`, `restart`, `cleanup` are **destructive and affect shared infra**. Always confirm with the user before calling them, even if they previously approved a similar action. Never chain a destroy with anything else.
-- Never log the token. When showing example curl commands, reference `$EASYPANEL_TOKEN` rather than pasting it.
-- Prefer `projects.inspectProject` before mutating. It returns the full project **including all nested services, their source config, env, domains, and deploy history** — so you usually don't need a separate `services.app.inspect` call. Use it to diff current state before any mutation.
+- Destructive/infra procedures: `destroy*`, `restartEasypanel`, `refreshServerIp`, `refreshDeployToken`, `changeCredentials`, `stopService`, `restartService`. **Always confirm with the user, even if they previously approved a similar action.** Never chain a destroy with anything else.
+- **All `update*` mutations are effectively destructive** to whatever field they touch — re-read the warning block above. `inspectService` → build full payload → `update*`. Do not send minimal diffs.
+- Probing: to verify a procedure path exists, send `{}` — the Zod error confirms the path. **Do not send a real `{projectName, serviceName}`** to an `update*` mutation you haven't verified the shape of — the Zod validator passes through optional fields and the mutation applies.
+- Never log the token. Reference `$EASYPANEL_TOKEN` in examples.
 
 ## Typical flows
 
+**Redeploy an existing service (latest from tracked branch):**
+```bash
+node scripts/easypanel.mjs services.app.deployService '{"projectName":"X","serviceName":"Y"}'
+# Verify:
+node scripts/easypanel.mjs services.app.inspectService '{"projectName":"X","serviceName":"Y"}'
+# → commit.sha should be the branch HEAD
+```
+
 **Deploy a new app from GitHub:**
-1. `projects.createProject` (skip if exists — check with `listProjects` first)
-2. `services.app.create`
-3. `services.app.setSourceGithub`
-4. `services.app.setEnv` (if needed)
-5. `services.app.deploy`
-6. `domains.createDomain` for the public URL
+1. `projects.listProjectsAndServices` — check if exists
+2. `projects.createProject` if needed — `{name}`
+3. `services.app.createService` — `{projectName, serviceName}`
+4. `services.app.updateSourceGithub` — `{projectName, serviceName, owner, repo, ref, path}`
+5. `services.app.updateEnv` if needed — **send the FULL env block, not a diff**
+6. `services.app.deployService`
 
 **Check why a service is down:**
-1. `services.app.inspect` — look at status + last deploy
-2. `system.stats` + `services.stats` — CPU/memory pressure
-3. Report findings; ask before restarting
+1. `services.app.inspectService` — look at the `deploy` log + `enabled` flag
+2. `monitor.getServiceStats` with `serviceType: "app"` — live CPU/memory
+3. For container logs, use the WebSocket endpoint (see Logs section)
+4. Report findings; ask before restarting or redeploying
+
+**Update a single env var without wiping the others:**
+1. `services.app.inspectService` → read `env` (a newline-separated string)
+2. Parse it in your script, modify the one line
+3. `services.app.updateEnv` with the **full rebuilt string**
