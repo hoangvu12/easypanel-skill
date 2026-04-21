@@ -1,0 +1,4096 @@
+{
+  "openapi": "3.0.0",
+  "info": {
+    "title": "Easypanel API - Services Databases",
+    "version": "2.28.0"
+  },
+  "components": {
+    "securitySchemes": {
+      "bearerAuth": {
+        "type": "http",
+        "scheme": "bearer"
+      }
+    }
+  },
+  "paths": {
+    "/api/trpc/services.mariadb.inspectService": {
+      "get": {
+        "operationId": "services.mariadb.inspectService",
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ],
+        "tags": [
+          "Services / Mariadb"
+        ],
+        "responses": {
+          "200": {
+            "description": ""
+          }
+        },
+        "parameters": [
+          {
+            "in": "query",
+            "name": "input",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "json": {
+                      "type": "object",
+                      "properties": {
+                        "projectName": {
+                          "type": "string",
+                          "pattern": "^[a-z0-9-_]+$"
+                        },
+                        "serviceName": {
+                          "type": "string",
+                          "pattern": "^[a-z0-9-_]+$"
+                        }
+                      },
+                      "required": [
+                        "projectName",
+                        "serviceName"
+                      ],
+                      "additionalProperties": false
+                    }
+                  },
+                  "required": [
+                    "json"
+                  ],
+                  "additionalProperties": false
+                }
+              }
+            }
+          }
+        ]
+      }
+    },
+    "/api/trpc/services.mongo.inspectService": {
+      "get": {
+        "operationId": "services.mongo.inspectService",
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ],
+        "tags": [
+          "Services / Mongo"
+        ],
+        "responses": {
+          "200": {
+            "description": ""
+          }
+        },
+        "parameters": [
+          {
+            "in": "query",
+            "name": "input",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "json": {
+                      "type": "object",
+                      "properties": {
+                        "projectName": {
+                          "type": "string",
+                          "pattern": "^[a-z0-9-_]+$"
+                        },
+                        "serviceName": {
+                          "type": "string",
+                          "pattern": "^[a-z0-9-_]+$"
+                        }
+                      },
+                      "required": [
+                        "projectName",
+                        "serviceName"
+                      ],
+                      "additionalProperties": false
+                    }
+                  },
+                  "required": [
+                    "json"
+                  ],
+                  "additionalProperties": false
+                }
+              }
+            }
+          }
+        ]
+      }
+    },
+    "/api/trpc/services.mysql.inspectService": {
+      "get": {
+        "operationId": "services.mysql.inspectService",
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ],
+        "tags": [
+          "Services / Mysql"
+        ],
+        "responses": {
+          "200": {
+            "description": ""
+          }
+        },
+        "parameters": [
+          {
+            "in": "query",
+            "name": "input",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "json": {
+                      "type": "object",
+                      "properties": {
+                        "projectName": {
+                          "type": "string",
+                          "pattern": "^[a-z0-9-_]+$"
+                        },
+                        "serviceName": {
+                          "type": "string",
+                          "pattern": "^[a-z0-9-_]+$"
+                        }
+                      },
+                      "required": [
+                        "projectName",
+                        "serviceName"
+                      ],
+                      "additionalProperties": false
+                    }
+                  },
+                  "required": [
+                    "json"
+                  ],
+                  "additionalProperties": false
+                }
+              }
+            }
+          }
+        ]
+      }
+    },
+    "/api/trpc/services.postgres.inspectService": {
+      "get": {
+        "operationId": "services.postgres.inspectService",
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ],
+        "tags": [
+          "Services / Postgres"
+        ],
+        "responses": {
+          "200": {
+            "description": ""
+          }
+        },
+        "parameters": [
+          {
+            "in": "query",
+            "name": "input",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "json": {
+                      "type": "object",
+                      "properties": {
+                        "projectName": {
+                          "type": "string",
+                          "pattern": "^[a-z0-9-_]+$"
+                        },
+                        "serviceName": {
+                          "type": "string",
+                          "pattern": "^[a-z0-9-_]+$"
+                        }
+                      },
+                      "required": [
+                        "projectName",
+                        "serviceName"
+                      ],
+                      "additionalProperties": false
+                    }
+                  },
+                  "required": [
+                    "json"
+                  ],
+                  "additionalProperties": false
+                }
+              }
+            }
+          }
+        ]
+      }
+    },
+    "/api/trpc/services.redis.inspectService": {
+      "get": {
+        "operationId": "services.redis.inspectService",
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ],
+        "tags": [
+          "Services / Redis"
+        ],
+        "responses": {
+          "200": {
+            "description": ""
+          }
+        },
+        "parameters": [
+          {
+            "in": "query",
+            "name": "input",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "json": {
+                      "type": "object",
+                      "properties": {
+                        "projectName": {
+                          "type": "string",
+                          "pattern": "^[a-z0-9-_]+$"
+                        },
+                        "serviceName": {
+                          "type": "string",
+                          "pattern": "^[a-z0-9-_]+$"
+                        }
+                      },
+                      "required": [
+                        "projectName",
+                        "serviceName"
+                      ],
+                      "additionalProperties": false
+                    }
+                  },
+                  "required": [
+                    "json"
+                  ],
+                  "additionalProperties": false
+                }
+              }
+            }
+          }
+        ]
+      }
+    },
+    "/api/trpc/services.mariadb.createService": {
+      "post": {
+        "operationId": "services.mariadb.createService",
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ],
+        "tags": [
+          "Services / Mariadb"
+        ],
+        "responses": {
+          "200": {
+            "description": ""
+          }
+        },
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "json": {
+                    "type": "object",
+                    "properties": {
+                      "projectName": {
+                        "type": "string",
+                        "pattern": "^[a-z0-9-_]+$"
+                      },
+                      "serviceName": {
+                        "type": "string",
+                        "pattern": "^[a-z0-9-_]+$"
+                      },
+                      "databaseName": {
+                        "type": "string",
+                        "pattern": "^[a-zA-Z][a-zA-Z0-9_-]{0,62}$"
+                      },
+                      "user": {
+                        "type": "string",
+                        "pattern": "^[a-zA-Z][a-zA-Z0-9_]{0,62}$"
+                      },
+                      "image": {
+                        "type": "string",
+                        "default": "mariadb:11"
+                      },
+                      "exposedPort": {
+                        "type": "number"
+                      },
+                      "password": {
+                        "type": "string",
+                        "default": "1e2841db218f28e36884"
+                      },
+                      "rootPassword": {
+                        "$ref": "#/properties/json/properties/password"
+                      },
+                      "resources": {
+                        "type": "object",
+                        "properties": {
+                          "memoryReservation": {
+                            "type": "number"
+                          },
+                          "memoryLimit": {
+                            "type": "number"
+                          },
+                          "cpuReservation": {
+                            "type": "number"
+                          },
+                          "cpuLimit": {
+                            "type": "number"
+                          }
+                        },
+                        "required": [
+                          "memoryReservation",
+                          "memoryLimit",
+                          "cpuReservation",
+                          "cpuLimit"
+                        ],
+                        "additionalProperties": false
+                      },
+                      "backup": {
+                        "type": "object",
+                        "properties": {
+                          "enabled": {
+                            "type": "boolean"
+                          },
+                          "schedule": {
+                            "type": "string",
+                            "minLength": 1
+                          },
+                          "destinationId": {
+                            "type": "string",
+                            "minLength": 1
+                          },
+                          "prefix": {
+                            "type": "string",
+                            "pattern": "^[\\w-/.]+$"
+                          },
+                          "databaseName": {
+                            "type": "string"
+                          }
+                        },
+                        "required": [
+                          "enabled",
+                          "schedule",
+                          "destinationId",
+                          "prefix"
+                        ],
+                        "additionalProperties": false
+                      },
+                      "env": {
+                        "type": "string"
+                      },
+                      "configFile": {
+                        "type": "string"
+                      },
+                      "command": {
+                        "type": "string"
+                      },
+                      "phpMyAdmin": {
+                        "type": "object",
+                        "properties": {
+                          "enabled": {
+                            "type": "boolean",
+                            "default": false
+                          },
+                          "token": {
+                            "type": "string",
+                            "default": "b07b1efc376ee7082542"
+                          }
+                        },
+                        "additionalProperties": false
+                      },
+                      "dbGate": {
+                        "type": "object",
+                        "properties": {
+                          "enabled": {
+                            "type": "boolean",
+                            "default": false
+                          },
+                          "token": {
+                            "type": "string",
+                            "default": "c67d10dc10b380e8aec6"
+                          }
+                        },
+                        "additionalProperties": false
+                      }
+                    },
+                    "required": [
+                      "projectName",
+                      "serviceName"
+                    ],
+                    "additionalProperties": false
+                  }
+                },
+                "required": [
+                  "json"
+                ],
+                "additionalProperties": false
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/trpc/services.mariadb.exposeService": {
+      "post": {
+        "operationId": "services.mariadb.exposeService",
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ],
+        "tags": [
+          "Services / Mariadb"
+        ],
+        "responses": {
+          "200": {
+            "description": ""
+          }
+        },
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "json": {
+                    "type": "object",
+                    "properties": {
+                      "projectName": {
+                        "type": "string",
+                        "pattern": "^[a-z0-9-_]+$"
+                      },
+                      "serviceName": {
+                        "type": "string",
+                        "pattern": "^[a-z0-9-_]+$"
+                      },
+                      "exposedPort": {
+                        "type": "number",
+                        "minimum": 0,
+                        "maximum": 65535
+                      }
+                    },
+                    "required": [
+                      "projectName",
+                      "serviceName",
+                      "exposedPort"
+                    ],
+                    "additionalProperties": false
+                  }
+                },
+                "required": [
+                  "json"
+                ],
+                "additionalProperties": false
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/trpc/services.mariadb.updateResources": {
+      "post": {
+        "operationId": "services.mariadb.updateResources",
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ],
+        "tags": [
+          "Services / Mariadb"
+        ],
+        "responses": {
+          "200": {
+            "description": ""
+          }
+        },
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "json": {
+                    "type": "object",
+                    "properties": {
+                      "projectName": {
+                        "type": "string",
+                        "pattern": "^[a-z0-9-_]+$"
+                      },
+                      "serviceName": {
+                        "type": "string",
+                        "pattern": "^[a-z0-9-_]+$"
+                      },
+                      "resources": {
+                        "type": "object",
+                        "properties": {
+                          "memoryReservation": {
+                            "type": "number"
+                          },
+                          "memoryLimit": {
+                            "type": "number"
+                          },
+                          "cpuReservation": {
+                            "type": "number"
+                          },
+                          "cpuLimit": {
+                            "type": "number"
+                          }
+                        },
+                        "required": [
+                          "memoryReservation",
+                          "memoryLimit",
+                          "cpuReservation",
+                          "cpuLimit"
+                        ],
+                        "additionalProperties": false
+                      }
+                    },
+                    "required": [
+                      "projectName",
+                      "serviceName"
+                    ],
+                    "additionalProperties": false
+                  }
+                },
+                "required": [
+                  "json"
+                ],
+                "additionalProperties": false
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/trpc/services.mariadb.enableService": {
+      "post": {
+        "operationId": "services.mariadb.enableService",
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ],
+        "tags": [
+          "Services / Mariadb"
+        ],
+        "responses": {
+          "200": {
+            "description": ""
+          }
+        },
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "json": {
+                    "type": "object",
+                    "properties": {
+                      "projectName": {
+                        "type": "string",
+                        "pattern": "^[a-z0-9-_]+$"
+                      },
+                      "serviceName": {
+                        "type": "string",
+                        "pattern": "^[a-z0-9-_]+$"
+                      }
+                    },
+                    "required": [
+                      "projectName",
+                      "serviceName"
+                    ],
+                    "additionalProperties": false
+                  }
+                },
+                "required": [
+                  "json"
+                ],
+                "additionalProperties": false
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/trpc/services.mariadb.disableService": {
+      "post": {
+        "operationId": "services.mariadb.disableService",
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ],
+        "tags": [
+          "Services / Mariadb"
+        ],
+        "responses": {
+          "200": {
+            "description": ""
+          }
+        },
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "json": {
+                    "type": "object",
+                    "properties": {
+                      "projectName": {
+                        "type": "string",
+                        "pattern": "^[a-z0-9-_]+$"
+                      },
+                      "serviceName": {
+                        "type": "string",
+                        "pattern": "^[a-z0-9-_]+$"
+                      }
+                    },
+                    "required": [
+                      "projectName",
+                      "serviceName"
+                    ],
+                    "additionalProperties": false
+                  }
+                },
+                "required": [
+                  "json"
+                ],
+                "additionalProperties": false
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/trpc/services.mariadb.destroyService": {
+      "post": {
+        "operationId": "services.mariadb.destroyService",
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ],
+        "tags": [
+          "Services / Mariadb"
+        ],
+        "responses": {
+          "200": {
+            "description": ""
+          }
+        },
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "json": {
+                    "type": "object",
+                    "properties": {
+                      "projectName": {
+                        "type": "string",
+                        "pattern": "^[a-z0-9-_]+$"
+                      },
+                      "serviceName": {
+                        "type": "string",
+                        "pattern": "^[a-z0-9-_]+$"
+                      }
+                    },
+                    "required": [
+                      "projectName",
+                      "serviceName"
+                    ],
+                    "additionalProperties": false
+                  }
+                },
+                "required": [
+                  "json"
+                ],
+                "additionalProperties": false
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/trpc/services.mariadb.enablePhpMyAdmin": {
+      "post": {
+        "operationId": "services.mariadb.enablePhpMyAdmin",
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ],
+        "tags": [
+          "Services / Mariadb"
+        ],
+        "responses": {
+          "200": {
+            "description": ""
+          }
+        },
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "json": {
+                    "type": "object",
+                    "properties": {
+                      "projectName": {
+                        "type": "string",
+                        "pattern": "^[a-z0-9-_]+$"
+                      },
+                      "serviceName": {
+                        "type": "string",
+                        "pattern": "^[a-z0-9-_]+$"
+                      }
+                    },
+                    "required": [
+                      "projectName",
+                      "serviceName"
+                    ],
+                    "additionalProperties": false
+                  }
+                },
+                "required": [
+                  "json"
+                ],
+                "additionalProperties": false
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/trpc/services.mariadb.disablePhpMyAdmin": {
+      "post": {
+        "operationId": "services.mariadb.disablePhpMyAdmin",
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ],
+        "tags": [
+          "Services / Mariadb"
+        ],
+        "responses": {
+          "200": {
+            "description": ""
+          }
+        },
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "json": {
+                    "type": "object",
+                    "properties": {
+                      "projectName": {
+                        "type": "string",
+                        "pattern": "^[a-z0-9-_]+$"
+                      },
+                      "serviceName": {
+                        "type": "string",
+                        "pattern": "^[a-z0-9-_]+$"
+                      }
+                    },
+                    "required": [
+                      "projectName",
+                      "serviceName"
+                    ],
+                    "additionalProperties": false
+                  }
+                },
+                "required": [
+                  "json"
+                ],
+                "additionalProperties": false
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/trpc/services.mariadb.enableDbGate": {
+      "post": {
+        "operationId": "services.mariadb.enableDbGate",
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ],
+        "tags": [
+          "Services / Mariadb"
+        ],
+        "responses": {
+          "200": {
+            "description": ""
+          }
+        },
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "json": {
+                    "type": "object",
+                    "properties": {
+                      "projectName": {
+                        "type": "string",
+                        "pattern": "^[a-z0-9-_]+$"
+                      },
+                      "serviceName": {
+                        "type": "string",
+                        "pattern": "^[a-z0-9-_]+$"
+                      }
+                    },
+                    "required": [
+                      "projectName",
+                      "serviceName"
+                    ],
+                    "additionalProperties": false
+                  }
+                },
+                "required": [
+                  "json"
+                ],
+                "additionalProperties": false
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/trpc/services.mariadb.disableDbGate": {
+      "post": {
+        "operationId": "services.mariadb.disableDbGate",
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ],
+        "tags": [
+          "Services / Mariadb"
+        ],
+        "responses": {
+          "200": {
+            "description": ""
+          }
+        },
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "json": {
+                    "type": "object",
+                    "properties": {
+                      "projectName": {
+                        "type": "string",
+                        "pattern": "^[a-z0-9-_]+$"
+                      },
+                      "serviceName": {
+                        "type": "string",
+                        "pattern": "^[a-z0-9-_]+$"
+                      }
+                    },
+                    "required": [
+                      "projectName",
+                      "serviceName"
+                    ],
+                    "additionalProperties": false
+                  }
+                },
+                "required": [
+                  "json"
+                ],
+                "additionalProperties": false
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/trpc/services.mariadb.updateAdvanced": {
+      "post": {
+        "operationId": "services.mariadb.updateAdvanced",
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ],
+        "tags": [
+          "Services / Mariadb"
+        ],
+        "responses": {
+          "200": {
+            "description": ""
+          }
+        },
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "json": {
+                    "type": "object",
+                    "properties": {
+                      "projectName": {
+                        "type": "string",
+                        "pattern": "^[a-z0-9-_]+$"
+                      },
+                      "serviceName": {
+                        "type": "string",
+                        "pattern": "^[a-z0-9-_]+$"
+                      },
+                      "image": {
+                        "type": "string"
+                      },
+                      "command": {
+                        "type": "string"
+                      },
+                      "env": {
+                        "type": "string"
+                      },
+                      "configFile": {
+                        "type": "string"
+                      }
+                    },
+                    "required": [
+                      "projectName",
+                      "serviceName",
+                      "image",
+                      "command"
+                    ],
+                    "additionalProperties": false
+                  }
+                },
+                "required": [
+                  "json"
+                ],
+                "additionalProperties": false
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/trpc/services.mariadb.updateCredentials": {
+      "post": {
+        "operationId": "services.mariadb.updateCredentials",
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ],
+        "tags": [
+          "Services / Mariadb"
+        ],
+        "responses": {
+          "200": {
+            "description": ""
+          }
+        },
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "json": {
+                    "type": "object",
+                    "properties": {
+                      "projectName": {
+                        "type": "string",
+                        "pattern": "^[a-z0-9-_]+$"
+                      },
+                      "serviceName": {
+                        "type": "string",
+                        "pattern": "^[a-z0-9-_]+$"
+                      },
+                      "password": {
+                        "type": "string"
+                      },
+                      "rootPassword": {
+                        "type": "string"
+                      }
+                    },
+                    "required": [
+                      "projectName",
+                      "serviceName",
+                      "password",
+                      "rootPassword"
+                    ],
+                    "additionalProperties": false
+                  }
+                },
+                "required": [
+                  "json"
+                ],
+                "additionalProperties": false
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/trpc/services.mongo.createService": {
+      "post": {
+        "operationId": "services.mongo.createService",
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ],
+        "tags": [
+          "Services / Mongo"
+        ],
+        "responses": {
+          "200": {
+            "description": ""
+          }
+        },
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "json": {
+                    "type": "object",
+                    "properties": {
+                      "projectName": {
+                        "type": "string",
+                        "pattern": "^[a-z0-9-_]+$"
+                      },
+                      "serviceName": {
+                        "type": "string",
+                        "pattern": "^[a-z0-9-_]+$"
+                      },
+                      "user": {
+                        "type": "string",
+                        "pattern": "^[a-zA-Z][a-zA-Z0-9_]{0,62}$"
+                      },
+                      "image": {
+                        "type": "string",
+                        "default": "mongo:8"
+                      },
+                      "exposedPort": {
+                        "type": "number"
+                      },
+                      "password": {
+                        "type": "string",
+                        "default": "71f40cbf9f689ea2127f"
+                      },
+                      "backup": {
+                        "type": "object",
+                        "properties": {
+                          "enabled": {
+                            "type": "boolean"
+                          },
+                          "schedule": {
+                            "type": "string",
+                            "minLength": 1
+                          },
+                          "destinationId": {
+                            "type": "string",
+                            "minLength": 1
+                          },
+                          "prefix": {
+                            "type": "string",
+                            "pattern": "^[\\w-/.]+$"
+                          },
+                          "databaseName": {
+                            "type": "string"
+                          }
+                        },
+                        "required": [
+                          "enabled",
+                          "schedule",
+                          "destinationId",
+                          "prefix"
+                        ],
+                        "additionalProperties": false
+                      },
+                      "resources": {
+                        "type": "object",
+                        "properties": {
+                          "memoryReservation": {
+                            "type": "number"
+                          },
+                          "memoryLimit": {
+                            "type": "number"
+                          },
+                          "cpuReservation": {
+                            "type": "number"
+                          },
+                          "cpuLimit": {
+                            "type": "number"
+                          }
+                        },
+                        "required": [
+                          "memoryReservation",
+                          "memoryLimit",
+                          "cpuReservation",
+                          "cpuLimit"
+                        ],
+                        "additionalProperties": false
+                      },
+                      "env": {
+                        "type": "string"
+                      },
+                      "command": {
+                        "type": "string"
+                      },
+                      "mongoExpress": {
+                        "type": "object",
+                        "properties": {
+                          "enabled": {
+                            "type": "boolean",
+                            "default": false
+                          },
+                          "token": {
+                            "type": "string",
+                            "default": "8a1a64d4866734423252"
+                          }
+                        },
+                        "additionalProperties": false
+                      },
+                      "dbGate": {
+                        "type": "object",
+                        "properties": {
+                          "enabled": {
+                            "type": "boolean",
+                            "default": false
+                          },
+                          "token": {
+                            "type": "string",
+                            "default": "dc2689f1b955c1137c19"
+                          }
+                        },
+                        "additionalProperties": false
+                      }
+                    },
+                    "required": [
+                      "projectName",
+                      "serviceName"
+                    ],
+                    "additionalProperties": false
+                  }
+                },
+                "required": [
+                  "json"
+                ],
+                "additionalProperties": false
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/trpc/services.mongo.exposeService": {
+      "post": {
+        "operationId": "services.mongo.exposeService",
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ],
+        "tags": [
+          "Services / Mongo"
+        ],
+        "responses": {
+          "200": {
+            "description": ""
+          }
+        },
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "json": {
+                    "type": "object",
+                    "properties": {
+                      "projectName": {
+                        "type": "string",
+                        "pattern": "^[a-z0-9-_]+$"
+                      },
+                      "serviceName": {
+                        "type": "string",
+                        "pattern": "^[a-z0-9-_]+$"
+                      },
+                      "exposedPort": {
+                        "type": "number",
+                        "minimum": 0,
+                        "maximum": 65535
+                      }
+                    },
+                    "required": [
+                      "projectName",
+                      "serviceName",
+                      "exposedPort"
+                    ],
+                    "additionalProperties": false
+                  }
+                },
+                "required": [
+                  "json"
+                ],
+                "additionalProperties": false
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/trpc/services.mongo.updateResources": {
+      "post": {
+        "operationId": "services.mongo.updateResources",
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ],
+        "tags": [
+          "Services / Mongo"
+        ],
+        "responses": {
+          "200": {
+            "description": ""
+          }
+        },
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "json": {
+                    "type": "object",
+                    "properties": {
+                      "projectName": {
+                        "type": "string",
+                        "pattern": "^[a-z0-9-_]+$"
+                      },
+                      "serviceName": {
+                        "type": "string",
+                        "pattern": "^[a-z0-9-_]+$"
+                      },
+                      "resources": {
+                        "type": "object",
+                        "properties": {
+                          "memoryReservation": {
+                            "type": "number"
+                          },
+                          "memoryLimit": {
+                            "type": "number"
+                          },
+                          "cpuReservation": {
+                            "type": "number"
+                          },
+                          "cpuLimit": {
+                            "type": "number"
+                          }
+                        },
+                        "required": [
+                          "memoryReservation",
+                          "memoryLimit",
+                          "cpuReservation",
+                          "cpuLimit"
+                        ],
+                        "additionalProperties": false
+                      }
+                    },
+                    "required": [
+                      "projectName",
+                      "serviceName"
+                    ],
+                    "additionalProperties": false
+                  }
+                },
+                "required": [
+                  "json"
+                ],
+                "additionalProperties": false
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/trpc/services.mongo.enableService": {
+      "post": {
+        "operationId": "services.mongo.enableService",
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ],
+        "tags": [
+          "Services / Mongo"
+        ],
+        "responses": {
+          "200": {
+            "description": ""
+          }
+        },
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "json": {
+                    "type": "object",
+                    "properties": {
+                      "projectName": {
+                        "type": "string",
+                        "pattern": "^[a-z0-9-_]+$"
+                      },
+                      "serviceName": {
+                        "type": "string",
+                        "pattern": "^[a-z0-9-_]+$"
+                      }
+                    },
+                    "required": [
+                      "projectName",
+                      "serviceName"
+                    ],
+                    "additionalProperties": false
+                  }
+                },
+                "required": [
+                  "json"
+                ],
+                "additionalProperties": false
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/trpc/services.mongo.disableService": {
+      "post": {
+        "operationId": "services.mongo.disableService",
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ],
+        "tags": [
+          "Services / Mongo"
+        ],
+        "responses": {
+          "200": {
+            "description": ""
+          }
+        },
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "json": {
+                    "type": "object",
+                    "properties": {
+                      "projectName": {
+                        "type": "string",
+                        "pattern": "^[a-z0-9-_]+$"
+                      },
+                      "serviceName": {
+                        "type": "string",
+                        "pattern": "^[a-z0-9-_]+$"
+                      }
+                    },
+                    "required": [
+                      "projectName",
+                      "serviceName"
+                    ],
+                    "additionalProperties": false
+                  }
+                },
+                "required": [
+                  "json"
+                ],
+                "additionalProperties": false
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/trpc/services.mongo.destroyService": {
+      "post": {
+        "operationId": "services.mongo.destroyService",
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ],
+        "tags": [
+          "Services / Mongo"
+        ],
+        "responses": {
+          "200": {
+            "description": ""
+          }
+        },
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "json": {
+                    "type": "object",
+                    "properties": {
+                      "projectName": {
+                        "type": "string",
+                        "pattern": "^[a-z0-9-_]+$"
+                      },
+                      "serviceName": {
+                        "type": "string",
+                        "pattern": "^[a-z0-9-_]+$"
+                      }
+                    },
+                    "required": [
+                      "projectName",
+                      "serviceName"
+                    ],
+                    "additionalProperties": false
+                  }
+                },
+                "required": [
+                  "json"
+                ],
+                "additionalProperties": false
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/trpc/services.mongo.enableMongoExpress": {
+      "post": {
+        "operationId": "services.mongo.enableMongoExpress",
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ],
+        "tags": [
+          "Services / Mongo"
+        ],
+        "responses": {
+          "200": {
+            "description": ""
+          }
+        },
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "json": {
+                    "type": "object",
+                    "properties": {
+                      "projectName": {
+                        "type": "string",
+                        "pattern": "^[a-z0-9-_]+$"
+                      },
+                      "serviceName": {
+                        "type": "string",
+                        "pattern": "^[a-z0-9-_]+$"
+                      }
+                    },
+                    "required": [
+                      "projectName",
+                      "serviceName"
+                    ],
+                    "additionalProperties": false
+                  }
+                },
+                "required": [
+                  "json"
+                ],
+                "additionalProperties": false
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/trpc/services.mongo.disableMongoExpress": {
+      "post": {
+        "operationId": "services.mongo.disableMongoExpress",
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ],
+        "tags": [
+          "Services / Mongo"
+        ],
+        "responses": {
+          "200": {
+            "description": ""
+          }
+        },
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "json": {
+                    "type": "object",
+                    "properties": {
+                      "projectName": {
+                        "type": "string",
+                        "pattern": "^[a-z0-9-_]+$"
+                      },
+                      "serviceName": {
+                        "type": "string",
+                        "pattern": "^[a-z0-9-_]+$"
+                      }
+                    },
+                    "required": [
+                      "projectName",
+                      "serviceName"
+                    ],
+                    "additionalProperties": false
+                  }
+                },
+                "required": [
+                  "json"
+                ],
+                "additionalProperties": false
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/trpc/services.mongo.enableDbGate": {
+      "post": {
+        "operationId": "services.mongo.enableDbGate",
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ],
+        "tags": [
+          "Services / Mongo"
+        ],
+        "responses": {
+          "200": {
+            "description": ""
+          }
+        },
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "json": {
+                    "type": "object",
+                    "properties": {
+                      "projectName": {
+                        "type": "string",
+                        "pattern": "^[a-z0-9-_]+$"
+                      },
+                      "serviceName": {
+                        "type": "string",
+                        "pattern": "^[a-z0-9-_]+$"
+                      }
+                    },
+                    "required": [
+                      "projectName",
+                      "serviceName"
+                    ],
+                    "additionalProperties": false
+                  }
+                },
+                "required": [
+                  "json"
+                ],
+                "additionalProperties": false
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/trpc/services.mongo.disableDbGate": {
+      "post": {
+        "operationId": "services.mongo.disableDbGate",
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ],
+        "tags": [
+          "Services / Mongo"
+        ],
+        "responses": {
+          "200": {
+            "description": ""
+          }
+        },
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "json": {
+                    "type": "object",
+                    "properties": {
+                      "projectName": {
+                        "type": "string",
+                        "pattern": "^[a-z0-9-_]+$"
+                      },
+                      "serviceName": {
+                        "type": "string",
+                        "pattern": "^[a-z0-9-_]+$"
+                      }
+                    },
+                    "required": [
+                      "projectName",
+                      "serviceName"
+                    ],
+                    "additionalProperties": false
+                  }
+                },
+                "required": [
+                  "json"
+                ],
+                "additionalProperties": false
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/trpc/services.mongo.updateAdvanced": {
+      "post": {
+        "operationId": "services.mongo.updateAdvanced",
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ],
+        "tags": [
+          "Services / Mongo"
+        ],
+        "responses": {
+          "200": {
+            "description": ""
+          }
+        },
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "json": {
+                    "type": "object",
+                    "properties": {
+                      "projectName": {
+                        "type": "string",
+                        "pattern": "^[a-z0-9-_]+$"
+                      },
+                      "serviceName": {
+                        "type": "string",
+                        "pattern": "^[a-z0-9-_]+$"
+                      },
+                      "image": {
+                        "type": "string"
+                      },
+                      "command": {
+                        "type": "string"
+                      },
+                      "env": {
+                        "type": "string"
+                      }
+                    },
+                    "required": [
+                      "projectName",
+                      "serviceName",
+                      "image",
+                      "command"
+                    ],
+                    "additionalProperties": false
+                  }
+                },
+                "required": [
+                  "json"
+                ],
+                "additionalProperties": false
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/trpc/services.mongo.updateCredentials": {
+      "post": {
+        "operationId": "services.mongo.updateCredentials",
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ],
+        "tags": [
+          "Services / Mongo"
+        ],
+        "responses": {
+          "200": {
+            "description": ""
+          }
+        },
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "json": {
+                    "type": "object",
+                    "properties": {
+                      "projectName": {
+                        "type": "string",
+                        "pattern": "^[a-z0-9-_]+$"
+                      },
+                      "serviceName": {
+                        "type": "string",
+                        "pattern": "^[a-z0-9-_]+$"
+                      },
+                      "password": {
+                        "type": "string"
+                      }
+                    },
+                    "required": [
+                      "projectName",
+                      "serviceName",
+                      "password"
+                    ],
+                    "additionalProperties": false
+                  }
+                },
+                "required": [
+                  "json"
+                ],
+                "additionalProperties": false
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/trpc/services.mysql.createService": {
+      "post": {
+        "operationId": "services.mysql.createService",
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ],
+        "tags": [
+          "Services / Mysql"
+        ],
+        "responses": {
+          "200": {
+            "description": ""
+          }
+        },
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "json": {
+                    "type": "object",
+                    "properties": {
+                      "projectName": {
+                        "type": "string",
+                        "pattern": "^[a-z0-9-_]+$"
+                      },
+                      "serviceName": {
+                        "type": "string",
+                        "pattern": "^[a-z0-9-_]+$"
+                      },
+                      "databaseName": {
+                        "type": "string",
+                        "pattern": "^[a-zA-Z][a-zA-Z0-9_-]{0,62}$"
+                      },
+                      "user": {
+                        "type": "string",
+                        "pattern": "^[a-zA-Z][a-zA-Z0-9_]{0,62}$"
+                      },
+                      "image": {
+                        "type": "string",
+                        "default": "mysql:9"
+                      },
+                      "exposedPort": {
+                        "type": "number"
+                      },
+                      "password": {
+                        "type": "string",
+                        "default": "7525c89c44a7c0406b56"
+                      },
+                      "rootPassword": {
+                        "$ref": "#/properties/json/properties/password"
+                      },
+                      "resources": {
+                        "type": "object",
+                        "properties": {
+                          "memoryReservation": {
+                            "type": "number"
+                          },
+                          "memoryLimit": {
+                            "type": "number"
+                          },
+                          "cpuReservation": {
+                            "type": "number"
+                          },
+                          "cpuLimit": {
+                            "type": "number"
+                          }
+                        },
+                        "required": [
+                          "memoryReservation",
+                          "memoryLimit",
+                          "cpuReservation",
+                          "cpuLimit"
+                        ],
+                        "additionalProperties": false
+                      },
+                      "backup": {
+                        "type": "object",
+                        "properties": {
+                          "enabled": {
+                            "type": "boolean"
+                          },
+                          "schedule": {
+                            "type": "string",
+                            "minLength": 1
+                          },
+                          "destinationId": {
+                            "type": "string",
+                            "minLength": 1
+                          },
+                          "prefix": {
+                            "type": "string",
+                            "pattern": "^[\\w-/.]+$"
+                          },
+                          "databaseName": {
+                            "type": "string"
+                          }
+                        },
+                        "required": [
+                          "enabled",
+                          "schedule",
+                          "destinationId",
+                          "prefix"
+                        ],
+                        "additionalProperties": false
+                      },
+                      "env": {
+                        "type": "string"
+                      },
+                      "configFile": {
+                        "type": "string"
+                      },
+                      "command": {
+                        "type": "string"
+                      },
+                      "phpMyAdmin": {
+                        "type": "object",
+                        "properties": {
+                          "enabled": {
+                            "type": "boolean",
+                            "default": false
+                          },
+                          "token": {
+                            "type": "string",
+                            "default": "6410e6bb9a26d720bd7a"
+                          }
+                        },
+                        "additionalProperties": false
+                      },
+                      "dbGate": {
+                        "type": "object",
+                        "properties": {
+                          "enabled": {
+                            "type": "boolean",
+                            "default": false
+                          },
+                          "token": {
+                            "type": "string",
+                            "default": "4f0c0b0eec1bd48bc28e"
+                          }
+                        },
+                        "additionalProperties": false
+                      }
+                    },
+                    "required": [
+                      "projectName",
+                      "serviceName"
+                    ],
+                    "additionalProperties": false
+                  }
+                },
+                "required": [
+                  "json"
+                ],
+                "additionalProperties": false
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/trpc/services.mysql.exposeService": {
+      "post": {
+        "operationId": "services.mysql.exposeService",
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ],
+        "tags": [
+          "Services / Mysql"
+        ],
+        "responses": {
+          "200": {
+            "description": ""
+          }
+        },
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "json": {
+                    "type": "object",
+                    "properties": {
+                      "projectName": {
+                        "type": "string",
+                        "pattern": "^[a-z0-9-_]+$"
+                      },
+                      "serviceName": {
+                        "type": "string",
+                        "pattern": "^[a-z0-9-_]+$"
+                      },
+                      "exposedPort": {
+                        "type": "number",
+                        "minimum": 0,
+                        "maximum": 65535
+                      }
+                    },
+                    "required": [
+                      "projectName",
+                      "serviceName",
+                      "exposedPort"
+                    ],
+                    "additionalProperties": false
+                  }
+                },
+                "required": [
+                  "json"
+                ],
+                "additionalProperties": false
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/trpc/services.mysql.updateResources": {
+      "post": {
+        "operationId": "services.mysql.updateResources",
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ],
+        "tags": [
+          "Services / Mysql"
+        ],
+        "responses": {
+          "200": {
+            "description": ""
+          }
+        },
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "json": {
+                    "type": "object",
+                    "properties": {
+                      "projectName": {
+                        "type": "string",
+                        "pattern": "^[a-z0-9-_]+$"
+                      },
+                      "serviceName": {
+                        "type": "string",
+                        "pattern": "^[a-z0-9-_]+$"
+                      },
+                      "resources": {
+                        "type": "object",
+                        "properties": {
+                          "memoryReservation": {
+                            "type": "number"
+                          },
+                          "memoryLimit": {
+                            "type": "number"
+                          },
+                          "cpuReservation": {
+                            "type": "number"
+                          },
+                          "cpuLimit": {
+                            "type": "number"
+                          }
+                        },
+                        "required": [
+                          "memoryReservation",
+                          "memoryLimit",
+                          "cpuReservation",
+                          "cpuLimit"
+                        ],
+                        "additionalProperties": false
+                      }
+                    },
+                    "required": [
+                      "projectName",
+                      "serviceName"
+                    ],
+                    "additionalProperties": false
+                  }
+                },
+                "required": [
+                  "json"
+                ],
+                "additionalProperties": false
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/trpc/services.mysql.enableService": {
+      "post": {
+        "operationId": "services.mysql.enableService",
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ],
+        "tags": [
+          "Services / Mysql"
+        ],
+        "responses": {
+          "200": {
+            "description": ""
+          }
+        },
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "json": {
+                    "type": "object",
+                    "properties": {
+                      "projectName": {
+                        "type": "string",
+                        "pattern": "^[a-z0-9-_]+$"
+                      },
+                      "serviceName": {
+                        "type": "string",
+                        "pattern": "^[a-z0-9-_]+$"
+                      }
+                    },
+                    "required": [
+                      "projectName",
+                      "serviceName"
+                    ],
+                    "additionalProperties": false
+                  }
+                },
+                "required": [
+                  "json"
+                ],
+                "additionalProperties": false
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/trpc/services.mysql.disableService": {
+      "post": {
+        "operationId": "services.mysql.disableService",
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ],
+        "tags": [
+          "Services / Mysql"
+        ],
+        "responses": {
+          "200": {
+            "description": ""
+          }
+        },
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "json": {
+                    "type": "object",
+                    "properties": {
+                      "projectName": {
+                        "type": "string",
+                        "pattern": "^[a-z0-9-_]+$"
+                      },
+                      "serviceName": {
+                        "type": "string",
+                        "pattern": "^[a-z0-9-_]+$"
+                      }
+                    },
+                    "required": [
+                      "projectName",
+                      "serviceName"
+                    ],
+                    "additionalProperties": false
+                  }
+                },
+                "required": [
+                  "json"
+                ],
+                "additionalProperties": false
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/trpc/services.mysql.destroyService": {
+      "post": {
+        "operationId": "services.mysql.destroyService",
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ],
+        "tags": [
+          "Services / Mysql"
+        ],
+        "responses": {
+          "200": {
+            "description": ""
+          }
+        },
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "json": {
+                    "type": "object",
+                    "properties": {
+                      "projectName": {
+                        "type": "string",
+                        "pattern": "^[a-z0-9-_]+$"
+                      },
+                      "serviceName": {
+                        "type": "string",
+                        "pattern": "^[a-z0-9-_]+$"
+                      }
+                    },
+                    "required": [
+                      "projectName",
+                      "serviceName"
+                    ],
+                    "additionalProperties": false
+                  }
+                },
+                "required": [
+                  "json"
+                ],
+                "additionalProperties": false
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/trpc/services.mysql.enablePhpMyAdmin": {
+      "post": {
+        "operationId": "services.mysql.enablePhpMyAdmin",
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ],
+        "tags": [
+          "Services / Mysql"
+        ],
+        "responses": {
+          "200": {
+            "description": ""
+          }
+        },
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "json": {
+                    "type": "object",
+                    "properties": {
+                      "projectName": {
+                        "type": "string",
+                        "pattern": "^[a-z0-9-_]+$"
+                      },
+                      "serviceName": {
+                        "type": "string",
+                        "pattern": "^[a-z0-9-_]+$"
+                      }
+                    },
+                    "required": [
+                      "projectName",
+                      "serviceName"
+                    ],
+                    "additionalProperties": false
+                  }
+                },
+                "required": [
+                  "json"
+                ],
+                "additionalProperties": false
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/trpc/services.mysql.disablePhpMyAdmin": {
+      "post": {
+        "operationId": "services.mysql.disablePhpMyAdmin",
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ],
+        "tags": [
+          "Services / Mysql"
+        ],
+        "responses": {
+          "200": {
+            "description": ""
+          }
+        },
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "json": {
+                    "type": "object",
+                    "properties": {
+                      "projectName": {
+                        "type": "string",
+                        "pattern": "^[a-z0-9-_]+$"
+                      },
+                      "serviceName": {
+                        "type": "string",
+                        "pattern": "^[a-z0-9-_]+$"
+                      }
+                    },
+                    "required": [
+                      "projectName",
+                      "serviceName"
+                    ],
+                    "additionalProperties": false
+                  }
+                },
+                "required": [
+                  "json"
+                ],
+                "additionalProperties": false
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/trpc/services.mysql.enableDbGate": {
+      "post": {
+        "operationId": "services.mysql.enableDbGate",
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ],
+        "tags": [
+          "Services / Mysql"
+        ],
+        "responses": {
+          "200": {
+            "description": ""
+          }
+        },
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "json": {
+                    "type": "object",
+                    "properties": {
+                      "projectName": {
+                        "type": "string",
+                        "pattern": "^[a-z0-9-_]+$"
+                      },
+                      "serviceName": {
+                        "type": "string",
+                        "pattern": "^[a-z0-9-_]+$"
+                      }
+                    },
+                    "required": [
+                      "projectName",
+                      "serviceName"
+                    ],
+                    "additionalProperties": false
+                  }
+                },
+                "required": [
+                  "json"
+                ],
+                "additionalProperties": false
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/trpc/services.mysql.disableDbGate": {
+      "post": {
+        "operationId": "services.mysql.disableDbGate",
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ],
+        "tags": [
+          "Services / Mysql"
+        ],
+        "responses": {
+          "200": {
+            "description": ""
+          }
+        },
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "json": {
+                    "type": "object",
+                    "properties": {
+                      "projectName": {
+                        "type": "string",
+                        "pattern": "^[a-z0-9-_]+$"
+                      },
+                      "serviceName": {
+                        "type": "string",
+                        "pattern": "^[a-z0-9-_]+$"
+                      }
+                    },
+                    "required": [
+                      "projectName",
+                      "serviceName"
+                    ],
+                    "additionalProperties": false
+                  }
+                },
+                "required": [
+                  "json"
+                ],
+                "additionalProperties": false
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/trpc/services.mysql.updateAdvanced": {
+      "post": {
+        "operationId": "services.mysql.updateAdvanced",
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ],
+        "tags": [
+          "Services / Mysql"
+        ],
+        "responses": {
+          "200": {
+            "description": ""
+          }
+        },
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "json": {
+                    "type": "object",
+                    "properties": {
+                      "projectName": {
+                        "type": "string",
+                        "pattern": "^[a-z0-9-_]+$"
+                      },
+                      "serviceName": {
+                        "type": "string",
+                        "pattern": "^[a-z0-9-_]+$"
+                      },
+                      "image": {
+                        "type": "string"
+                      },
+                      "command": {
+                        "type": "string"
+                      },
+                      "env": {
+                        "type": "string"
+                      },
+                      "configFile": {
+                        "type": "string"
+                      }
+                    },
+                    "required": [
+                      "projectName",
+                      "serviceName",
+                      "image",
+                      "command"
+                    ],
+                    "additionalProperties": false
+                  }
+                },
+                "required": [
+                  "json"
+                ],
+                "additionalProperties": false
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/trpc/services.mysql.updateCredentials": {
+      "post": {
+        "operationId": "services.mysql.updateCredentials",
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ],
+        "tags": [
+          "Services / Mysql"
+        ],
+        "responses": {
+          "200": {
+            "description": ""
+          }
+        },
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "json": {
+                    "type": "object",
+                    "properties": {
+                      "projectName": {
+                        "type": "string",
+                        "pattern": "^[a-z0-9-_]+$"
+                      },
+                      "serviceName": {
+                        "type": "string",
+                        "pattern": "^[a-z0-9-_]+$"
+                      },
+                      "password": {
+                        "type": "string"
+                      },
+                      "rootPassword": {
+                        "type": "string"
+                      }
+                    },
+                    "required": [
+                      "projectName",
+                      "serviceName",
+                      "password",
+                      "rootPassword"
+                    ],
+                    "additionalProperties": false
+                  }
+                },
+                "required": [
+                  "json"
+                ],
+                "additionalProperties": false
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/trpc/services.postgres.createService": {
+      "post": {
+        "operationId": "services.postgres.createService",
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ],
+        "tags": [
+          "Services / Postgres"
+        ],
+        "responses": {
+          "200": {
+            "description": ""
+          }
+        },
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "json": {
+                    "type": "object",
+                    "properties": {
+                      "projectName": {
+                        "type": "string",
+                        "pattern": "^[a-z0-9-_]+$"
+                      },
+                      "serviceName": {
+                        "type": "string",
+                        "pattern": "^[a-z0-9-_]+$"
+                      },
+                      "databaseName": {
+                        "type": "string",
+                        "pattern": "^[a-zA-Z][a-zA-Z0-9_-]{0,62}$"
+                      },
+                      "user": {
+                        "type": "string",
+                        "pattern": "^[a-zA-Z][a-zA-Z0-9_]{0,62}$"
+                      },
+                      "image": {
+                        "type": "string",
+                        "default": "postgres:17"
+                      },
+                      "exposedPort": {
+                        "type": "number"
+                      },
+                      "password": {
+                        "type": "string",
+                        "default": "7059aae5a654ec472ecd"
+                      },
+                      "backup": {
+                        "type": "object",
+                        "properties": {
+                          "enabled": {
+                            "type": "boolean"
+                          },
+                          "schedule": {
+                            "type": "string",
+                            "minLength": 1
+                          },
+                          "destinationId": {
+                            "type": "string",
+                            "minLength": 1
+                          },
+                          "prefix": {
+                            "type": "string",
+                            "pattern": "^[\\w-/.]+$"
+                          },
+                          "databaseName": {
+                            "type": "string"
+                          }
+                        },
+                        "required": [
+                          "enabled",
+                          "schedule",
+                          "destinationId",
+                          "prefix"
+                        ],
+                        "additionalProperties": false
+                      },
+                      "resources": {
+                        "type": "object",
+                        "properties": {
+                          "memoryReservation": {
+                            "type": "number"
+                          },
+                          "memoryLimit": {
+                            "type": "number"
+                          },
+                          "cpuReservation": {
+                            "type": "number"
+                          },
+                          "cpuLimit": {
+                            "type": "number"
+                          }
+                        },
+                        "required": [
+                          "memoryReservation",
+                          "memoryLimit",
+                          "cpuReservation",
+                          "cpuLimit"
+                        ],
+                        "additionalProperties": false
+                      },
+                      "env": {
+                        "type": "string"
+                      },
+                      "command": {
+                        "type": "string"
+                      },
+                      "pgWeb": {
+                        "type": "object",
+                        "properties": {
+                          "enabled": {
+                            "type": "boolean",
+                            "default": false
+                          },
+                          "token": {
+                            "type": "string",
+                            "default": "d9f7b51d1318f8d4a963"
+                          }
+                        },
+                        "additionalProperties": false
+                      },
+                      "dbGate": {
+                        "type": "object",
+                        "properties": {
+                          "enabled": {
+                            "type": "boolean",
+                            "default": false
+                          },
+                          "token": {
+                            "type": "string",
+                            "default": "b0fd70b04ac11c3d1724"
+                          }
+                        },
+                        "additionalProperties": false
+                      }
+                    },
+                    "required": [
+                      "projectName",
+                      "serviceName"
+                    ],
+                    "additionalProperties": false
+                  }
+                },
+                "required": [
+                  "json"
+                ],
+                "additionalProperties": false
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/trpc/services.postgres.exposeService": {
+      "post": {
+        "operationId": "services.postgres.exposeService",
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ],
+        "tags": [
+          "Services / Postgres"
+        ],
+        "responses": {
+          "200": {
+            "description": ""
+          }
+        },
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "json": {
+                    "type": "object",
+                    "properties": {
+                      "projectName": {
+                        "type": "string",
+                        "pattern": "^[a-z0-9-_]+$"
+                      },
+                      "serviceName": {
+                        "type": "string",
+                        "pattern": "^[a-z0-9-_]+$"
+                      },
+                      "exposedPort": {
+                        "type": "number",
+                        "minimum": 0,
+                        "maximum": 65535
+                      }
+                    },
+                    "required": [
+                      "projectName",
+                      "serviceName",
+                      "exposedPort"
+                    ],
+                    "additionalProperties": false
+                  }
+                },
+                "required": [
+                  "json"
+                ],
+                "additionalProperties": false
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/trpc/services.postgres.updateResources": {
+      "post": {
+        "operationId": "services.postgres.updateResources",
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ],
+        "tags": [
+          "Services / Postgres"
+        ],
+        "responses": {
+          "200": {
+            "description": ""
+          }
+        },
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "json": {
+                    "type": "object",
+                    "properties": {
+                      "projectName": {
+                        "type": "string",
+                        "pattern": "^[a-z0-9-_]+$"
+                      },
+                      "serviceName": {
+                        "type": "string",
+                        "pattern": "^[a-z0-9-_]+$"
+                      },
+                      "resources": {
+                        "type": "object",
+                        "properties": {
+                          "memoryReservation": {
+                            "type": "number"
+                          },
+                          "memoryLimit": {
+                            "type": "number"
+                          },
+                          "cpuReservation": {
+                            "type": "number"
+                          },
+                          "cpuLimit": {
+                            "type": "number"
+                          }
+                        },
+                        "required": [
+                          "memoryReservation",
+                          "memoryLimit",
+                          "cpuReservation",
+                          "cpuLimit"
+                        ],
+                        "additionalProperties": false
+                      }
+                    },
+                    "required": [
+                      "projectName",
+                      "serviceName"
+                    ],
+                    "additionalProperties": false
+                  }
+                },
+                "required": [
+                  "json"
+                ],
+                "additionalProperties": false
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/trpc/services.postgres.enableService": {
+      "post": {
+        "operationId": "services.postgres.enableService",
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ],
+        "tags": [
+          "Services / Postgres"
+        ],
+        "responses": {
+          "200": {
+            "description": ""
+          }
+        },
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "json": {
+                    "type": "object",
+                    "properties": {
+                      "projectName": {
+                        "type": "string",
+                        "pattern": "^[a-z0-9-_]+$"
+                      },
+                      "serviceName": {
+                        "type": "string",
+                        "pattern": "^[a-z0-9-_]+$"
+                      }
+                    },
+                    "required": [
+                      "projectName",
+                      "serviceName"
+                    ],
+                    "additionalProperties": false
+                  }
+                },
+                "required": [
+                  "json"
+                ],
+                "additionalProperties": false
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/trpc/services.postgres.disableService": {
+      "post": {
+        "operationId": "services.postgres.disableService",
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ],
+        "tags": [
+          "Services / Postgres"
+        ],
+        "responses": {
+          "200": {
+            "description": ""
+          }
+        },
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "json": {
+                    "type": "object",
+                    "properties": {
+                      "projectName": {
+                        "type": "string",
+                        "pattern": "^[a-z0-9-_]+$"
+                      },
+                      "serviceName": {
+                        "type": "string",
+                        "pattern": "^[a-z0-9-_]+$"
+                      }
+                    },
+                    "required": [
+                      "projectName",
+                      "serviceName"
+                    ],
+                    "additionalProperties": false
+                  }
+                },
+                "required": [
+                  "json"
+                ],
+                "additionalProperties": false
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/trpc/services.postgres.destroyService": {
+      "post": {
+        "operationId": "services.postgres.destroyService",
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ],
+        "tags": [
+          "Services / Postgres"
+        ],
+        "responses": {
+          "200": {
+            "description": ""
+          }
+        },
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "json": {
+                    "type": "object",
+                    "properties": {
+                      "projectName": {
+                        "type": "string",
+                        "pattern": "^[a-z0-9-_]+$"
+                      },
+                      "serviceName": {
+                        "type": "string",
+                        "pattern": "^[a-z0-9-_]+$"
+                      }
+                    },
+                    "required": [
+                      "projectName",
+                      "serviceName"
+                    ],
+                    "additionalProperties": false
+                  }
+                },
+                "required": [
+                  "json"
+                ],
+                "additionalProperties": false
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/trpc/services.postgres.enablePgWeb": {
+      "post": {
+        "operationId": "services.postgres.enablePgWeb",
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ],
+        "tags": [
+          "Services / Postgres"
+        ],
+        "responses": {
+          "200": {
+            "description": ""
+          }
+        },
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "json": {
+                    "type": "object",
+                    "properties": {
+                      "projectName": {
+                        "type": "string",
+                        "pattern": "^[a-z0-9-_]+$"
+                      },
+                      "serviceName": {
+                        "type": "string",
+                        "pattern": "^[a-z0-9-_]+$"
+                      }
+                    },
+                    "required": [
+                      "projectName",
+                      "serviceName"
+                    ],
+                    "additionalProperties": false
+                  }
+                },
+                "required": [
+                  "json"
+                ],
+                "additionalProperties": false
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/trpc/services.postgres.disablePgWeb": {
+      "post": {
+        "operationId": "services.postgres.disablePgWeb",
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ],
+        "tags": [
+          "Services / Postgres"
+        ],
+        "responses": {
+          "200": {
+            "description": ""
+          }
+        },
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "json": {
+                    "type": "object",
+                    "properties": {
+                      "projectName": {
+                        "type": "string",
+                        "pattern": "^[a-z0-9-_]+$"
+                      },
+                      "serviceName": {
+                        "type": "string",
+                        "pattern": "^[a-z0-9-_]+$"
+                      }
+                    },
+                    "required": [
+                      "projectName",
+                      "serviceName"
+                    ],
+                    "additionalProperties": false
+                  }
+                },
+                "required": [
+                  "json"
+                ],
+                "additionalProperties": false
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/trpc/services.postgres.enableDbGate": {
+      "post": {
+        "operationId": "services.postgres.enableDbGate",
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ],
+        "tags": [
+          "Services / Postgres"
+        ],
+        "responses": {
+          "200": {
+            "description": ""
+          }
+        },
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "json": {
+                    "type": "object",
+                    "properties": {
+                      "projectName": {
+                        "type": "string",
+                        "pattern": "^[a-z0-9-_]+$"
+                      },
+                      "serviceName": {
+                        "type": "string",
+                        "pattern": "^[a-z0-9-_]+$"
+                      }
+                    },
+                    "required": [
+                      "projectName",
+                      "serviceName"
+                    ],
+                    "additionalProperties": false
+                  }
+                },
+                "required": [
+                  "json"
+                ],
+                "additionalProperties": false
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/trpc/services.postgres.disableDbGate": {
+      "post": {
+        "operationId": "services.postgres.disableDbGate",
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ],
+        "tags": [
+          "Services / Postgres"
+        ],
+        "responses": {
+          "200": {
+            "description": ""
+          }
+        },
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "json": {
+                    "type": "object",
+                    "properties": {
+                      "projectName": {
+                        "type": "string",
+                        "pattern": "^[a-z0-9-_]+$"
+                      },
+                      "serviceName": {
+                        "type": "string",
+                        "pattern": "^[a-z0-9-_]+$"
+                      }
+                    },
+                    "required": [
+                      "projectName",
+                      "serviceName"
+                    ],
+                    "additionalProperties": false
+                  }
+                },
+                "required": [
+                  "json"
+                ],
+                "additionalProperties": false
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/trpc/services.postgres.updateAdvanced": {
+      "post": {
+        "operationId": "services.postgres.updateAdvanced",
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ],
+        "tags": [
+          "Services / Postgres"
+        ],
+        "responses": {
+          "200": {
+            "description": ""
+          }
+        },
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "json": {
+                    "type": "object",
+                    "properties": {
+                      "projectName": {
+                        "type": "string",
+                        "pattern": "^[a-z0-9-_]+$"
+                      },
+                      "serviceName": {
+                        "type": "string",
+                        "pattern": "^[a-z0-9-_]+$"
+                      },
+                      "image": {
+                        "type": "string"
+                      },
+                      "command": {
+                        "type": "string"
+                      },
+                      "env": {
+                        "type": "string"
+                      }
+                    },
+                    "required": [
+                      "projectName",
+                      "serviceName",
+                      "image",
+                      "command"
+                    ],
+                    "additionalProperties": false
+                  }
+                },
+                "required": [
+                  "json"
+                ],
+                "additionalProperties": false
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/trpc/services.postgres.updateCredentials": {
+      "post": {
+        "operationId": "services.postgres.updateCredentials",
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ],
+        "tags": [
+          "Services / Postgres"
+        ],
+        "responses": {
+          "200": {
+            "description": ""
+          }
+        },
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "json": {
+                    "type": "object",
+                    "properties": {
+                      "projectName": {
+                        "type": "string",
+                        "pattern": "^[a-z0-9-_]+$"
+                      },
+                      "serviceName": {
+                        "type": "string",
+                        "pattern": "^[a-z0-9-_]+$"
+                      },
+                      "password": {
+                        "type": "string"
+                      }
+                    },
+                    "required": [
+                      "projectName",
+                      "serviceName",
+                      "password"
+                    ],
+                    "additionalProperties": false
+                  }
+                },
+                "required": [
+                  "json"
+                ],
+                "additionalProperties": false
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/trpc/services.redis.createService": {
+      "post": {
+        "operationId": "services.redis.createService",
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ],
+        "tags": [
+          "Services / Redis"
+        ],
+        "responses": {
+          "200": {
+            "description": ""
+          }
+        },
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "json": {
+                    "type": "object",
+                    "properties": {
+                      "projectName": {
+                        "type": "string",
+                        "pattern": "^[a-z0-9-_]+$"
+                      },
+                      "serviceName": {
+                        "type": "string",
+                        "pattern": "^[a-z0-9-_]+$"
+                      },
+                      "image": {
+                        "type": "string",
+                        "default": "redis:7"
+                      },
+                      "exposedPort": {
+                        "type": "number"
+                      },
+                      "password": {
+                        "type": "string",
+                        "default": "a6efc0d64d9980ac2ac4"
+                      },
+                      "resources": {
+                        "type": "object",
+                        "properties": {
+                          "memoryReservation": {
+                            "type": "number"
+                          },
+                          "memoryLimit": {
+                            "type": "number"
+                          },
+                          "cpuReservation": {
+                            "type": "number"
+                          },
+                          "cpuLimit": {
+                            "type": "number"
+                          }
+                        },
+                        "required": [
+                          "memoryReservation",
+                          "memoryLimit",
+                          "cpuReservation",
+                          "cpuLimit"
+                        ],
+                        "additionalProperties": false
+                      },
+                      "env": {
+                        "type": "string"
+                      },
+                      "command": {
+                        "type": "string"
+                      },
+                      "redisCommander": {
+                        "type": "object",
+                        "properties": {
+                          "enabled": {
+                            "type": "boolean",
+                            "default": false
+                          },
+                          "token": {
+                            "type": "string",
+                            "default": "401b11137a91c84d7ca9"
+                          }
+                        },
+                        "additionalProperties": false
+                      },
+                      "dbGate": {
+                        "type": "object",
+                        "properties": {
+                          "enabled": {
+                            "type": "boolean",
+                            "default": false
+                          },
+                          "token": {
+                            "type": "string",
+                            "default": "8e90598efe73917cc6bc"
+                          }
+                        },
+                        "additionalProperties": false
+                      }
+                    },
+                    "required": [
+                      "projectName",
+                      "serviceName"
+                    ],
+                    "additionalProperties": false
+                  }
+                },
+                "required": [
+                  "json"
+                ],
+                "additionalProperties": false
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/trpc/services.redis.exposeService": {
+      "post": {
+        "operationId": "services.redis.exposeService",
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ],
+        "tags": [
+          "Services / Redis"
+        ],
+        "responses": {
+          "200": {
+            "description": ""
+          }
+        },
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "json": {
+                    "type": "object",
+                    "properties": {
+                      "projectName": {
+                        "type": "string",
+                        "pattern": "^[a-z0-9-_]+$"
+                      },
+                      "serviceName": {
+                        "type": "string",
+                        "pattern": "^[a-z0-9-_]+$"
+                      },
+                      "exposedPort": {
+                        "type": "number",
+                        "minimum": 0,
+                        "maximum": 65535
+                      }
+                    },
+                    "required": [
+                      "projectName",
+                      "serviceName",
+                      "exposedPort"
+                    ],
+                    "additionalProperties": false
+                  }
+                },
+                "required": [
+                  "json"
+                ],
+                "additionalProperties": false
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/trpc/services.redis.updateResources": {
+      "post": {
+        "operationId": "services.redis.updateResources",
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ],
+        "tags": [
+          "Services / Redis"
+        ],
+        "responses": {
+          "200": {
+            "description": ""
+          }
+        },
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "json": {
+                    "type": "object",
+                    "properties": {
+                      "projectName": {
+                        "type": "string",
+                        "pattern": "^[a-z0-9-_]+$"
+                      },
+                      "serviceName": {
+                        "type": "string",
+                        "pattern": "^[a-z0-9-_]+$"
+                      },
+                      "resources": {
+                        "type": "object",
+                        "properties": {
+                          "memoryReservation": {
+                            "type": "number"
+                          },
+                          "memoryLimit": {
+                            "type": "number"
+                          },
+                          "cpuReservation": {
+                            "type": "number"
+                          },
+                          "cpuLimit": {
+                            "type": "number"
+                          }
+                        },
+                        "required": [
+                          "memoryReservation",
+                          "memoryLimit",
+                          "cpuReservation",
+                          "cpuLimit"
+                        ],
+                        "additionalProperties": false
+                      }
+                    },
+                    "required": [
+                      "projectName",
+                      "serviceName"
+                    ],
+                    "additionalProperties": false
+                  }
+                },
+                "required": [
+                  "json"
+                ],
+                "additionalProperties": false
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/trpc/services.redis.enableService": {
+      "post": {
+        "operationId": "services.redis.enableService",
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ],
+        "tags": [
+          "Services / Redis"
+        ],
+        "responses": {
+          "200": {
+            "description": ""
+          }
+        },
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "json": {
+                    "type": "object",
+                    "properties": {
+                      "projectName": {
+                        "type": "string",
+                        "pattern": "^[a-z0-9-_]+$"
+                      },
+                      "serviceName": {
+                        "type": "string",
+                        "pattern": "^[a-z0-9-_]+$"
+                      }
+                    },
+                    "required": [
+                      "projectName",
+                      "serviceName"
+                    ],
+                    "additionalProperties": false
+                  }
+                },
+                "required": [
+                  "json"
+                ],
+                "additionalProperties": false
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/trpc/services.redis.disableService": {
+      "post": {
+        "operationId": "services.redis.disableService",
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ],
+        "tags": [
+          "Services / Redis"
+        ],
+        "responses": {
+          "200": {
+            "description": ""
+          }
+        },
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "json": {
+                    "type": "object",
+                    "properties": {
+                      "projectName": {
+                        "type": "string",
+                        "pattern": "^[a-z0-9-_]+$"
+                      },
+                      "serviceName": {
+                        "type": "string",
+                        "pattern": "^[a-z0-9-_]+$"
+                      }
+                    },
+                    "required": [
+                      "projectName",
+                      "serviceName"
+                    ],
+                    "additionalProperties": false
+                  }
+                },
+                "required": [
+                  "json"
+                ],
+                "additionalProperties": false
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/trpc/services.redis.destroyService": {
+      "post": {
+        "operationId": "services.redis.destroyService",
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ],
+        "tags": [
+          "Services / Redis"
+        ],
+        "responses": {
+          "200": {
+            "description": ""
+          }
+        },
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "json": {
+                    "type": "object",
+                    "properties": {
+                      "projectName": {
+                        "type": "string",
+                        "pattern": "^[a-z0-9-_]+$"
+                      },
+                      "serviceName": {
+                        "type": "string",
+                        "pattern": "^[a-z0-9-_]+$"
+                      }
+                    },
+                    "required": [
+                      "projectName",
+                      "serviceName"
+                    ],
+                    "additionalProperties": false
+                  }
+                },
+                "required": [
+                  "json"
+                ],
+                "additionalProperties": false
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/trpc/services.redis.enableRedisCommander": {
+      "post": {
+        "operationId": "services.redis.enableRedisCommander",
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ],
+        "tags": [
+          "Services / Redis"
+        ],
+        "responses": {
+          "200": {
+            "description": ""
+          }
+        },
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "json": {
+                    "type": "object",
+                    "properties": {
+                      "projectName": {
+                        "type": "string",
+                        "pattern": "^[a-z0-9-_]+$"
+                      },
+                      "serviceName": {
+                        "type": "string",
+                        "pattern": "^[a-z0-9-_]+$"
+                      }
+                    },
+                    "required": [
+                      "projectName",
+                      "serviceName"
+                    ],
+                    "additionalProperties": false
+                  }
+                },
+                "required": [
+                  "json"
+                ],
+                "additionalProperties": false
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/trpc/services.redis.disableRedisCommander": {
+      "post": {
+        "operationId": "services.redis.disableRedisCommander",
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ],
+        "tags": [
+          "Services / Redis"
+        ],
+        "responses": {
+          "200": {
+            "description": ""
+          }
+        },
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "json": {
+                    "type": "object",
+                    "properties": {
+                      "projectName": {
+                        "type": "string",
+                        "pattern": "^[a-z0-9-_]+$"
+                      },
+                      "serviceName": {
+                        "type": "string",
+                        "pattern": "^[a-z0-9-_]+$"
+                      }
+                    },
+                    "required": [
+                      "projectName",
+                      "serviceName"
+                    ],
+                    "additionalProperties": false
+                  }
+                },
+                "required": [
+                  "json"
+                ],
+                "additionalProperties": false
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/trpc/services.redis.enableDbGate": {
+      "post": {
+        "operationId": "services.redis.enableDbGate",
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ],
+        "tags": [
+          "Services / Redis"
+        ],
+        "responses": {
+          "200": {
+            "description": ""
+          }
+        },
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "json": {
+                    "type": "object",
+                    "properties": {
+                      "projectName": {
+                        "type": "string",
+                        "pattern": "^[a-z0-9-_]+$"
+                      },
+                      "serviceName": {
+                        "type": "string",
+                        "pattern": "^[a-z0-9-_]+$"
+                      }
+                    },
+                    "required": [
+                      "projectName",
+                      "serviceName"
+                    ],
+                    "additionalProperties": false
+                  }
+                },
+                "required": [
+                  "json"
+                ],
+                "additionalProperties": false
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/trpc/services.redis.disableDbGate": {
+      "post": {
+        "operationId": "services.redis.disableDbGate",
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ],
+        "tags": [
+          "Services / Redis"
+        ],
+        "responses": {
+          "200": {
+            "description": ""
+          }
+        },
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "json": {
+                    "type": "object",
+                    "properties": {
+                      "projectName": {
+                        "type": "string",
+                        "pattern": "^[a-z0-9-_]+$"
+                      },
+                      "serviceName": {
+                        "type": "string",
+                        "pattern": "^[a-z0-9-_]+$"
+                      }
+                    },
+                    "required": [
+                      "projectName",
+                      "serviceName"
+                    ],
+                    "additionalProperties": false
+                  }
+                },
+                "required": [
+                  "json"
+                ],
+                "additionalProperties": false
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/trpc/services.redis.updateAdvanced": {
+      "post": {
+        "operationId": "services.redis.updateAdvanced",
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ],
+        "tags": [
+          "Services / Redis"
+        ],
+        "responses": {
+          "200": {
+            "description": ""
+          }
+        },
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "json": {
+                    "type": "object",
+                    "properties": {
+                      "projectName": {
+                        "type": "string",
+                        "pattern": "^[a-z0-9-_]+$"
+                      },
+                      "serviceName": {
+                        "type": "string",
+                        "pattern": "^[a-z0-9-_]+$"
+                      },
+                      "image": {
+                        "type": "string"
+                      },
+                      "command": {
+                        "type": "string"
+                      },
+                      "env": {
+                        "type": "string"
+                      }
+                    },
+                    "required": [
+                      "projectName",
+                      "serviceName",
+                      "image",
+                      "command"
+                    ],
+                    "additionalProperties": false
+                  }
+                },
+                "required": [
+                  "json"
+                ],
+                "additionalProperties": false
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/trpc/services.redis.updateCredentials": {
+      "post": {
+        "operationId": "services.redis.updateCredentials",
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ],
+        "tags": [
+          "Services / Redis"
+        ],
+        "responses": {
+          "200": {
+            "description": ""
+          }
+        },
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "json": {
+                    "type": "object",
+                    "properties": {
+                      "projectName": {
+                        "type": "string",
+                        "pattern": "^[a-z0-9-_]+$"
+                      },
+                      "serviceName": {
+                        "type": "string",
+                        "pattern": "^[a-z0-9-_]+$"
+                      },
+                      "password": {
+                        "type": "string"
+                      }
+                    },
+                    "required": [
+                      "projectName",
+                      "serviceName",
+                      "password"
+                    ],
+                    "additionalProperties": false
+                  }
+                },
+                "required": [
+                  "json"
+                ],
+                "additionalProperties": false
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}

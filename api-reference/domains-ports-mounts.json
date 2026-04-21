@@ -1,0 +1,970 @@
+{
+  "openapi": "3.0.0",
+  "info": {
+    "title": "Easypanel API - Domains Ports Mounts",
+    "version": "2.28.0"
+  },
+  "components": {
+    "securitySchemes": {
+      "bearerAuth": {
+        "type": "http",
+        "scheme": "bearer"
+      }
+    }
+  },
+  "paths": {
+    "/api/trpc/domains.getPrimaryDomain": {
+      "get": {
+        "operationId": "domains.getPrimaryDomain",
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ],
+        "tags": [
+          "Domains"
+        ],
+        "responses": {
+          "200": {
+            "description": ""
+          }
+        },
+        "parameters": [
+          {
+            "in": "query",
+            "name": "input",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "json": {
+                      "type": "object",
+                      "properties": {
+                        "projectName": {
+                          "type": "string",
+                          "pattern": "^[a-z0-9-_]+$"
+                        },
+                        "serviceName": {
+                          "type": "string",
+                          "pattern": "^[a-z0-9-_]+$"
+                        }
+                      },
+                      "required": [
+                        "projectName",
+                        "serviceName"
+                      ],
+                      "additionalProperties": false
+                    }
+                  },
+                  "required": [
+                    "json"
+                  ],
+                  "additionalProperties": false
+                }
+              }
+            }
+          }
+        ]
+      }
+    },
+    "/api/trpc/domains.listDomains": {
+      "get": {
+        "operationId": "domains.listDomains",
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ],
+        "tags": [
+          "Domains"
+        ],
+        "responses": {
+          "200": {
+            "description": ""
+          }
+        },
+        "parameters": [
+          {
+            "in": "query",
+            "name": "input",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "json": {
+                      "type": "object",
+                      "properties": {
+                        "projectName": {
+                          "type": "string",
+                          "pattern": "^[a-z0-9-_]+$"
+                        },
+                        "serviceName": {
+                          "type": "string",
+                          "pattern": "^[a-z0-9-_]+$"
+                        }
+                      },
+                      "additionalProperties": false
+                    }
+                  },
+                  "required": [
+                    "json"
+                  ],
+                  "additionalProperties": false
+                }
+              }
+            }
+          }
+        ]
+      }
+    },
+    "/api/trpc/mounts.listMounts": {
+      "get": {
+        "operationId": "mounts.listMounts",
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ],
+        "tags": [
+          "Mounts"
+        ],
+        "responses": {
+          "200": {
+            "description": ""
+          }
+        },
+        "parameters": [
+          {
+            "in": "query",
+            "name": "input",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "json": {
+                      "type": "object",
+                      "properties": {
+                        "projectName": {
+                          "type": "string",
+                          "pattern": "^[a-z0-9-_]+$"
+                        },
+                        "serviceName": {
+                          "type": "string",
+                          "pattern": "^[a-z0-9-_]+$"
+                        }
+                      },
+                      "required": [
+                        "projectName",
+                        "serviceName"
+                      ],
+                      "additionalProperties": false
+                    }
+                  },
+                  "required": [
+                    "json"
+                  ],
+                  "additionalProperties": false
+                }
+              }
+            }
+          }
+        ]
+      }
+    },
+    "/api/trpc/ports.listPorts": {
+      "get": {
+        "operationId": "ports.listPorts",
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ],
+        "tags": [
+          "Ports"
+        ],
+        "responses": {
+          "200": {
+            "description": ""
+          }
+        },
+        "parameters": [
+          {
+            "in": "query",
+            "name": "input",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "json": {
+                      "type": "object",
+                      "properties": {
+                        "projectName": {
+                          "type": "string",
+                          "pattern": "^[a-z0-9-_]+$"
+                        },
+                        "serviceName": {
+                          "type": "string",
+                          "pattern": "^[a-z0-9-_]+$"
+                        }
+                      },
+                      "required": [
+                        "projectName",
+                        "serviceName"
+                      ],
+                      "additionalProperties": false
+                    }
+                  },
+                  "required": [
+                    "json"
+                  ],
+                  "additionalProperties": false
+                }
+              }
+            }
+          }
+        ]
+      }
+    },
+    "/api/trpc/domains.createDomain": {
+      "post": {
+        "operationId": "domains.createDomain",
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ],
+        "tags": [
+          "Domains"
+        ],
+        "responses": {
+          "200": {
+            "description": ""
+          }
+        },
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "json": {
+                    "type": "object",
+                    "properties": {},
+                    "additionalProperties": false,
+                    "description": "Unknown object properties"
+                  }
+                },
+                "required": [
+                  "json"
+                ],
+                "additionalProperties": false
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/trpc/domains.updateDomain": {
+      "post": {
+        "operationId": "domains.updateDomain",
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ],
+        "tags": [
+          "Domains"
+        ],
+        "responses": {
+          "200": {
+            "description": ""
+          }
+        },
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "json": {
+                    "type": "object",
+                    "properties": {},
+                    "additionalProperties": false,
+                    "description": "Unknown object properties"
+                  }
+                },
+                "required": [
+                  "json"
+                ],
+                "additionalProperties": false
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/trpc/domains.deleteDomain": {
+      "post": {
+        "operationId": "domains.deleteDomain",
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ],
+        "tags": [
+          "Domains"
+        ],
+        "responses": {
+          "200": {
+            "description": ""
+          }
+        },
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "json": {
+                    "type": "object",
+                    "properties": {
+                      "id": {
+                        "type": "string"
+                      }
+                    },
+                    "required": [
+                      "id"
+                    ],
+                    "additionalProperties": false
+                  }
+                },
+                "required": [
+                  "json"
+                ],
+                "additionalProperties": false
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/trpc/domains.setPrimaryDomain": {
+      "post": {
+        "operationId": "domains.setPrimaryDomain",
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ],
+        "tags": [
+          "Domains"
+        ],
+        "responses": {
+          "200": {
+            "description": ""
+          }
+        },
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "json": {
+                    "type": "object",
+                    "properties": {
+                      "id": {
+                        "type": "string"
+                      }
+                    },
+                    "required": [
+                      "id"
+                    ],
+                    "additionalProperties": false
+                  }
+                },
+                "required": [
+                  "json"
+                ],
+                "additionalProperties": false
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/trpc/mounts.createMount": {
+      "post": {
+        "operationId": "mounts.createMount",
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ],
+        "tags": [
+          "Mounts"
+        ],
+        "responses": {
+          "200": {
+            "description": ""
+          }
+        },
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "json": {
+                    "type": "object",
+                    "properties": {
+                      "projectName": {
+                        "type": "string",
+                        "pattern": "^[a-z0-9-_]+$"
+                      },
+                      "serviceName": {
+                        "type": "string",
+                        "pattern": "^[a-z0-9-_]+$"
+                      },
+                      "values": {
+                        "anyOf": [
+                          {
+                            "type": "object",
+                            "properties": {
+                              "type": {
+                                "type": "string",
+                                "const": "bind"
+                              },
+                              "hostPath": {
+                                "type": "string",
+                                "minLength": 1
+                              },
+                              "mountPath": {
+                                "type": "string",
+                                "minLength": 1
+                              }
+                            },
+                            "required": [
+                              "type",
+                              "hostPath",
+                              "mountPath"
+                            ],
+                            "additionalProperties": false
+                          },
+                          {
+                            "type": "object",
+                            "properties": {
+                              "type": {
+                                "type": "string",
+                                "const": "volume"
+                              },
+                              "name": {
+                                "type": "string",
+                                "pattern": "^[a-z0-9-_]+$"
+                              },
+                              "mountPath": {
+                                "type": "string",
+                                "minLength": 1
+                              }
+                            },
+                            "required": [
+                              "type",
+                              "name",
+                              "mountPath"
+                            ],
+                            "additionalProperties": false
+                          },
+                          {
+                            "type": "object",
+                            "properties": {
+                              "type": {
+                                "type": "string",
+                                "const": "file"
+                              },
+                              "content": {
+                                "type": "string"
+                              },
+                              "mountPath": {
+                                "type": "string",
+                                "minLength": 1
+                              }
+                            },
+                            "required": [
+                              "type",
+                              "content",
+                              "mountPath"
+                            ],
+                            "additionalProperties": false
+                          }
+                        ]
+                      }
+                    },
+                    "required": [
+                      "projectName",
+                      "serviceName",
+                      "values"
+                    ],
+                    "additionalProperties": false
+                  }
+                },
+                "required": [
+                  "json"
+                ],
+                "additionalProperties": false
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/trpc/mounts.updateMount": {
+      "post": {
+        "operationId": "mounts.updateMount",
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ],
+        "tags": [
+          "Mounts"
+        ],
+        "responses": {
+          "200": {
+            "description": ""
+          }
+        },
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "json": {
+                    "type": "object",
+                    "properties": {
+                      "projectName": {
+                        "type": "string",
+                        "pattern": "^[a-z0-9-_]+$"
+                      },
+                      "serviceName": {
+                        "type": "string",
+                        "pattern": "^[a-z0-9-_]+$"
+                      },
+                      "index": {
+                        "type": "number"
+                      },
+                      "values": {
+                        "anyOf": [
+                          {
+                            "type": "object",
+                            "properties": {
+                              "type": {
+                                "type": "string",
+                                "const": "bind"
+                              },
+                              "hostPath": {
+                                "type": "string",
+                                "minLength": 1
+                              },
+                              "mountPath": {
+                                "type": "string",
+                                "minLength": 1
+                              }
+                            },
+                            "required": [
+                              "type",
+                              "hostPath",
+                              "mountPath"
+                            ],
+                            "additionalProperties": false
+                          },
+                          {
+                            "type": "object",
+                            "properties": {
+                              "type": {
+                                "type": "string",
+                                "const": "volume"
+                              },
+                              "name": {
+                                "type": "string",
+                                "pattern": "^[a-z0-9-_]+$"
+                              },
+                              "mountPath": {
+                                "type": "string",
+                                "minLength": 1
+                              }
+                            },
+                            "required": [
+                              "type",
+                              "name",
+                              "mountPath"
+                            ],
+                            "additionalProperties": false
+                          },
+                          {
+                            "type": "object",
+                            "properties": {
+                              "type": {
+                                "type": "string",
+                                "const": "file"
+                              },
+                              "content": {
+                                "type": "string"
+                              },
+                              "mountPath": {
+                                "type": "string",
+                                "minLength": 1
+                              }
+                            },
+                            "required": [
+                              "type",
+                              "content",
+                              "mountPath"
+                            ],
+                            "additionalProperties": false
+                          }
+                        ]
+                      }
+                    },
+                    "required": [
+                      "projectName",
+                      "serviceName",
+                      "index",
+                      "values"
+                    ],
+                    "additionalProperties": false
+                  }
+                },
+                "required": [
+                  "json"
+                ],
+                "additionalProperties": false
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/trpc/mounts.deleteMount": {
+      "post": {
+        "operationId": "mounts.deleteMount",
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ],
+        "tags": [
+          "Mounts"
+        ],
+        "responses": {
+          "200": {
+            "description": ""
+          }
+        },
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "json": {
+                    "type": "object",
+                    "properties": {
+                      "projectName": {
+                        "type": "string",
+                        "pattern": "^[a-z0-9-_]+$"
+                      },
+                      "serviceName": {
+                        "type": "string",
+                        "pattern": "^[a-z0-9-_]+$"
+                      },
+                      "index": {
+                        "type": "number"
+                      }
+                    },
+                    "required": [
+                      "projectName",
+                      "serviceName",
+                      "index"
+                    ],
+                    "additionalProperties": false
+                  }
+                },
+                "required": [
+                  "json"
+                ],
+                "additionalProperties": false
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/trpc/ports.createPort": {
+      "post": {
+        "operationId": "ports.createPort",
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ],
+        "tags": [
+          "Ports"
+        ],
+        "responses": {
+          "200": {
+            "description": ""
+          }
+        },
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "json": {
+                    "type": "object",
+                    "properties": {
+                      "projectName": {
+                        "type": "string",
+                        "pattern": "^[a-z0-9-_]+$"
+                      },
+                      "serviceName": {
+                        "type": "string",
+                        "pattern": "^[a-z0-9-_]+$"
+                      },
+                      "values": {
+                        "type": "object",
+                        "properties": {
+                          "published": {
+                            "type": "number"
+                          },
+                          "target": {
+                            "type": "number"
+                          },
+                          "protocol": {
+                            "type": "string",
+                            "enum": [
+                              "tcp",
+                              "udp"
+                            ],
+                            "default": "tcp"
+                          }
+                        },
+                        "required": [
+                          "published",
+                          "target"
+                        ],
+                        "additionalProperties": false
+                      }
+                    },
+                    "required": [
+                      "projectName",
+                      "serviceName",
+                      "values"
+                    ],
+                    "additionalProperties": false
+                  }
+                },
+                "required": [
+                  "json"
+                ],
+                "additionalProperties": false
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/trpc/ports.updatePort": {
+      "post": {
+        "operationId": "ports.updatePort",
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ],
+        "tags": [
+          "Ports"
+        ],
+        "responses": {
+          "200": {
+            "description": ""
+          }
+        },
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "json": {
+                    "type": "object",
+                    "properties": {
+                      "projectName": {
+                        "type": "string",
+                        "pattern": "^[a-z0-9-_]+$"
+                      },
+                      "serviceName": {
+                        "type": "string",
+                        "pattern": "^[a-z0-9-_]+$"
+                      },
+                      "index": {
+                        "type": "number"
+                      },
+                      "values": {
+                        "type": "object",
+                        "properties": {
+                          "published": {
+                            "type": "number"
+                          },
+                          "target": {
+                            "type": "number"
+                          },
+                          "protocol": {
+                            "type": "string",
+                            "enum": [
+                              "tcp",
+                              "udp"
+                            ],
+                            "default": "tcp"
+                          }
+                        },
+                        "required": [
+                          "published",
+                          "target"
+                        ],
+                        "additionalProperties": false
+                      }
+                    },
+                    "required": [
+                      "projectName",
+                      "serviceName",
+                      "index",
+                      "values"
+                    ],
+                    "additionalProperties": false
+                  }
+                },
+                "required": [
+                  "json"
+                ],
+                "additionalProperties": false
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/trpc/ports.deletePort": {
+      "post": {
+        "operationId": "ports.deletePort",
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ],
+        "tags": [
+          "Ports"
+        ],
+        "responses": {
+          "200": {
+            "description": ""
+          }
+        },
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "json": {
+                    "type": "object",
+                    "properties": {
+                      "projectName": {
+                        "type": "string",
+                        "pattern": "^[a-z0-9-_]+$"
+                      },
+                      "serviceName": {
+                        "type": "string",
+                        "pattern": "^[a-z0-9-_]+$"
+                      },
+                      "index": {
+                        "type": "number"
+                      }
+                    },
+                    "required": [
+                      "projectName",
+                      "serviceName",
+                      "index"
+                    ],
+                    "additionalProperties": false
+                  }
+                },
+                "required": [
+                  "json"
+                ],
+                "additionalProperties": false
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/trpc/ports.deleteAllPorts": {
+      "post": {
+        "operationId": "ports.deleteAllPorts",
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ],
+        "tags": [
+          "Ports"
+        ],
+        "responses": {
+          "200": {
+            "description": ""
+          }
+        },
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "json": {
+                    "type": "object",
+                    "properties": {
+                      "projectName": {
+                        "type": "string",
+                        "pattern": "^[a-z0-9-_]+$"
+                      },
+                      "serviceName": {
+                        "type": "string",
+                        "pattern": "^[a-z0-9-_]+$"
+                      }
+                    },
+                    "required": [
+                      "projectName",
+                      "serviceName"
+                    ],
+                    "additionalProperties": false
+                  }
+                },
+                "required": [
+                  "json"
+                ],
+                "additionalProperties": false
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}

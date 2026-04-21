@@ -1,6 +1,8 @@
 ---
 name: easypanel
+version: 1
 description: Manage Easypanel servers via the undocumented tRPC API at /api/trpc. Use when the user wants to list/create/deploy/inspect projects, app services, databases (postgres/mysql/mongo/redis/mariadb), docker compose stacks, domains, ports, env vars, or check system stats on an Easypanel instance.
+agents: [main_agent, general_purpose]
 ---
 
 # Easypanel skill
@@ -11,6 +13,8 @@ Talks to an Easypanel server through its tRPC API. Easypanel calls it "undocumen
 - https://github.com/Easypanel-Community/easypanel `src/utils/routes.ts` — 2023 TS SDK route map. **Stale in spots** — several listed paths 404 on current Easypanel (`enableService`, `disableService`, `exposeService`, `updatePorts`, `updateMounts`, `updateBackup`, `updateDomains`, `logs.getServiceLogs`, `settings.pruneDockerImages`, Traefik config).
 
 Every procedure path below was either verified against a live panel (Zod error = path+shape exist, or a successful call) or explicitly flagged as unverified.
+
+**Full API reference:** The complete OpenAPI spec has been split into category files in `api-reference/` (16 files, 358 endpoints total). Use these when you need detailed schemas for a specific category.
 
 ## Setup (one-time per instance)
 
@@ -66,8 +70,11 @@ Rules:
 - `listProjectsAndServices` (query, no input) — preferred for bulk inspection
 - `canCreateProject` (query, no input) — returns `true`/`false`. **Is a query despite the verb.**
 - `inspectProject` (query) — `{projectName}` — returns the project incl. all nested services, source, env, build, commit history
+- `getDockerContainers` (query) — `{service}` — list Docker containers for a service
 - `createProject` (mutation) — `{name}`
 - `destroyProject` (mutation) — **`{name}`** (NOT `{projectName}` — verified via Zod)
+- `updateProjectEnv` (mutation) — shape not probed; inspect first
+- `updateAccess` (mutation) — shape not probed; inspect first
 
 ### App services (`services.app.*`) — every service type shares the same method set: `services.{app,postgres,mysql,mongo,redis,mariadb,compose}.*`
 
@@ -82,13 +89,15 @@ Source config (mutations, all on top of `{projectName, serviceName}`):
 - `updateSourceGit` — `+ {repo, ref, path}` (note: field is `repo`, not `repository` as the 2023 SDK claimed)
 - `updateSourceImage` — `+ {image, username?, password?}`
 - `updateSourceDockerfile` — `+ {dockerfile}` (inline contents)
+- `enableGithubDeploy`, `disableGithubDeploy` — toggle GitHub webhook auto-deploy
 
 Service config (mutations, `{projectName, serviceName, ...}`) — **all wipe-on-omit; see warning above**:
 - `updateEnv` — `+ {env}` (newline-separated `KEY=VALUE` string; `\n` works, responses come back with `\r\n`)
 - `updateBuild` — `+ {build: {type, ...}}` — type is one of `"nixpacks"`, `"dockerfile"`, etc. Nixpacks: `{type:"nixpacks", nixpacksVersion:"1.34.1"}`. Dockerfile: `{type:"dockerfile", file:"Dockerfile"}`.
 - `updateResources` — `+ {resources: {memoryReservation, memoryLimit, cpuReservation, cpuLimit}}` (all numbers; nested per samleinav docs — flat form was not verified)
 - `updateRedirects`, `updateBasicAuth`, `updateDeploy`, `updateMaintenance` — shapes not fully probed; inspect first
-- mariadb-only: `updateAdvanced`
+- `updateScripts` — shape not probed; inspect first
+- `uploadCodeArchive` — for deploy-without-git flows (also see REST endpoint below)
 
 Confirmed 404 on current Easypanel (don't try these):
 `enableService`, `disableService`, `exposeService`, `updatePorts`, `updateMounts`, `updateBackup`, `updateDomains`
@@ -101,25 +110,66 @@ Redis-specific extras (`services.redis.*`): `updateCredentials`, `enableDbGate`,
 - `getServiceStats` — `{projectName, serviceName, serviceType}` where serviceType is the namespace (`"app"`, `"postgres"`, etc.); returns live CPU/memory/network for one service
 - `getDockerTaskStats` — per-task actual vs desired replicas
 - `getMonitorTableData` — all containers, including foreign ones
+- `getStorageStats` — disk/storage information
 
 ### Auth / users
 - `auth.login` (mutation) — `{email, password}`
 - `auth.logout` (mutation)
 - `auth.getSession` (query) — **not `auth.getUser`** (SDK is wrong); returns `{id, userId, expiresAt, demoMode, ...}`
+- `auth.getUser` (query) — exists in OpenAPI but not verified live
 - `users.listUsers` (query)
 - `users.generateApiToken`, `users.revokeApiToken` (mutations)
+- `users.createUser`, `users.updateUser`, `users.destroyUser` (mutations) — user management; confirm before calling
 
 ### Settings (`settings.*`) — many destructive; confirm before calling
-- Server: `restartEasypanel`, `getServerIp` (query), `refreshServerIp`
-- Panel: `getPanelDomain` (query), `setPanelDomain`
+- Server: `restartEasypanel`, `getServerIp` (query), `refreshServerIp`, `reboot` (mutation — **reboots the entire server**)
+- Docker: `cleanupDockerImages`, `cleanupDockerBuilder`, `systemPrune`, `checkDockerUpdate`, `getDockerVersion` (query), `getDailyDockerCleanup` (query), `setDailyDockerCleanup`
+- Panel: `getPanelDomain` (query), `setPanelDomain`, `getServiceDomain` (query), `setServiceDomain`
 - TLS: `getLetsEncryptEmail` (query), `setLetsEncryptEmail`
 - GitHub: `getGithubToken` (query), `setGithubToken`
+- Analytics: `getGoogleAnalyticsMeasurementId` (query), `setGoogleAnalyticsMeasurementId`
 - Creds: `changeCredentials`
+- Updates: `checkForUpdates`
 
-Confirmed 404: `getTraefikCustomConfig`, `updateTraefikCustomConfig`, `restartTraefik`, `pruneDockerImages`, `pruneDockerBuilder`, `setPruneDockerDaily` — all listed in the 2023 SDK, all removed/renamed. Probe before documenting replacements.
+**Note:** Some 2023 SDK endpoints have been renamed: `pruneDockerImages` → `cleanupDockerImages`, `pruneDockerBuilder` → `cleanupDockerBuilder`. Traefik endpoints moved to `traefik.*` namespace (see Infrastructure).
+
+### Infrastructure
+- `traefik.getEnv`, `traefik.getCustomConfig`, `traefik.getDashboard` (queries)
+- `traefik.setEnv`, `traefik.setCustomConfig`, `traefik.restart` (mutations)
+- `cluster.listNodes`, `cluster.addWorkerCommand` (queries), `cluster.removeNode` (mutation)
+- `dockerBuilders.listDockerBuilders` (query), `dockerBuilders.createDockerBuilder`, `dockerBuilders.useDockerBuilder`, `dockerBuilders.stopDockerBuilder`, `dockerBuilders.removeDockerBuilder` (mutations)
+- `middlewares.listMiddlewares` (query), `middlewares.createMiddleware`, `middlewares.updateMiddleware`, `middlewares.destroyMiddleware` (mutations)
+- `certificates.listCertificates` (query), `certificates.removeCertificate` (mutation)
+
+### Domains, Ports, Mounts
+- `domains.listDomains`, `domains.getPrimaryDomain` (queries); `domains.createDomain`, `domains.updateDomain`, `domains.deleteDomain`, `domains.setPrimaryDomain` (mutations)
+- `ports.listPorts` (query); `ports.createPort`, `ports.updatePort`, `ports.deletePort`, `ports.deleteAllPorts` (mutations)
+- `mounts.listMounts` (query); `mounts.createMount`, `mounts.updateMount`, `mounts.deleteMount` (mutations)
+
+### Backups
+- Database backups: `databaseBackups.listDatabaseBackups`, `databaseBackups.getServiceDatabases` (queries); `databaseBackups.createDatabaseBackup`, `databaseBackups.updateDatabaseBackup`, `databaseBackups.deleteDatabaseBackup`, `databaseBackups.runDatabaseBackup`, `databaseBackups.restoreDatabaseBackup` (mutations)
+- Volume backups: `volumeBackups.listVolumeMounts`, `volumeBackups.listVolumeBackups` (queries); `volumeBackups.createVolumeBackup`, `volumeBackups.updateVolumeBackup`, `volumeBackups.destroyVolumeBackup`, `volumeBackups.runVolumeBackup` (mutations)
+
+### Storage Providers & Notifications
+- Storage: `storageProviders.common.list`, `storageProviders.common.listOptions` (queries); provider CRUD for dropbox, ftp, google, local, s3, sftp (mutations)
+- Notifications: `notifications.listNotificationChannels` (query); `notifications.sendTestNotification`, `notifications.createNotificationChannel`, `notifications.updateNotificationChannel`, `notifications.destroyNotificationChannel` (mutations)
+
+### Branding
+- `branding.getErrorPageSettings`, `branding.getBasicSettings`, `branding.getLogoSettings`, `branding.getCustomCodeSettings`, `branding.getLinksSettings`, `branding.getOtherLinksSettings`, `branding.getInterfaceSettingsPublic` (queries)
+- `branding.setErrorPageSettings`, `branding.setBasicSettings`, `branding.setLogoSettings`, `branding.setCustomCodeSettings`, `branding.setLinksSettings` (mutations)
 
 ### Templates
 - `templates.createFromSchema` (mutation) — `{projectName, schema: {services: [...]}}` — bulk deploy a stack
+
+### Other categories (see `api-reference/` for full schemas)
+- **Services / Compose**: `services.compose.*` — Docker Compose stacks (16 endpoints)
+- **Services / Wordpress**: `services.wordpress.*` — WordPress management (52 endpoints)
+- **Services / Box**: `services.box.*` — Box/IDE services (30 endpoints)
+- **Actions**: `actions.listActions`, `actions.getAction`, `actions.killAction`
+- **Cloudflare Tunnel**: `cloudflareTunnel.*` — tunnel management
+- **Git**: `git.getPublicKey`, `git.generateKey`
+- **Setup / Update**: `setup.getStatus`, `setup.setup`, `update.getStatus`, `update.update`
+- **Two Factor**: `twoFactor.configure`, `twoFactor.enable`, `twoFactor.disable`
 
 ### Logs (WebSocket, not tRPC)
 Per samleinav docs:

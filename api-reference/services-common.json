@@ -1,0 +1,241 @@
+{
+  "openapi": "3.0.0",
+  "info": {
+    "title": "Easypanel API - Services Common",
+    "version": "2.28.0"
+  },
+  "components": {
+    "securitySchemes": {
+      "bearerAuth": {
+        "type": "http",
+        "scheme": "bearer"
+      }
+    }
+  },
+  "paths": {
+    "/api/trpc/services.common.getServiceError": {
+      "get": {
+        "operationId": "services.common.getServiceError",
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ],
+        "tags": [
+          "Services / Common"
+        ],
+        "responses": {
+          "200": {
+            "description": ""
+          }
+        },
+        "parameters": [
+          {
+            "in": "query",
+            "name": "input",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "json": {
+                      "type": "object",
+                      "properties": {
+                        "projectName": {
+                          "type": "string",
+                          "pattern": "^[a-z0-9-_]+$"
+                        },
+                        "serviceName": {
+                          "type": "string",
+                          "pattern": "^[a-z0-9-_]+$"
+                        }
+                      },
+                      "required": [
+                        "projectName",
+                        "serviceName"
+                      ],
+                      "additionalProperties": false
+                    }
+                  },
+                  "required": [
+                    "json"
+                  ],
+                  "additionalProperties": false
+                }
+              }
+            }
+          }
+        ]
+      }
+    },
+    "/api/trpc/services.common.getNotes": {
+      "get": {
+        "operationId": "services.common.getNotes",
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ],
+        "tags": [
+          "Services / Common"
+        ],
+        "responses": {
+          "200": {
+            "description": ""
+          }
+        },
+        "parameters": [
+          {
+            "in": "query",
+            "name": "input",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "json": {
+                      "type": "object",
+                      "properties": {
+                        "projectName": {
+                          "type": "string",
+                          "pattern": "^[a-z0-9-_]+$"
+                        },
+                        "serviceName": {
+                          "type": "string",
+                          "pattern": "^[a-z0-9-_]+$"
+                        }
+                      },
+                      "required": [
+                        "projectName",
+                        "serviceName"
+                      ],
+                      "additionalProperties": false
+                    }
+                  },
+                  "required": [
+                    "json"
+                  ],
+                  "additionalProperties": false
+                }
+              }
+            }
+          }
+        ]
+      }
+    },
+    "/api/trpc/services.common.rename": {
+      "post": {
+        "operationId": "services.common.rename",
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ],
+        "tags": [
+          "Services / Common"
+        ],
+        "responses": {
+          "200": {
+            "description": ""
+          }
+        },
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "json": {
+                    "type": "object",
+                    "properties": {
+                      "oldProjectName": {
+                        "type": "string",
+                        "pattern": "^[a-z0-9-_]+$"
+                      },
+                      "oldServiceName": {
+                        "type": "string",
+                        "pattern": "^[a-z0-9-_]+$"
+                      },
+                      "newProjectName": {
+                        "$ref": "#/properties/json/properties/oldProjectName"
+                      },
+                      "newServiceName": {
+                        "$ref": "#/properties/json/properties/oldServiceName"
+                      }
+                    },
+                    "required": [
+                      "oldProjectName",
+                      "oldServiceName",
+                      "newProjectName",
+                      "newServiceName"
+                    ],
+                    "additionalProperties": false
+                  }
+                },
+                "required": [
+                  "json"
+                ],
+                "additionalProperties": false
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/trpc/services.common.setNotes": {
+      "post": {
+        "operationId": "services.common.setNotes",
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ],
+        "tags": [
+          "Services / Common"
+        ],
+        "responses": {
+          "200": {
+            "description": ""
+          }
+        },
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "json": {
+                    "type": "object",
+                    "properties": {
+                      "projectName": {
+                        "type": "string",
+                        "pattern": "^[a-z0-9-_]+$"
+                      },
+                      "serviceName": {
+                        "type": "string",
+                        "pattern": "^[a-z0-9-_]+$"
+                      },
+                      "notes": {
+                        "type": "string",
+                        "default": ""
+                      }
+                    },
+                    "required": [
+                      "projectName",
+                      "serviceName"
+                    ],
+                    "additionalProperties": false
+                  }
+                },
+                "required": [
+                  "json"
+                ],
+                "additionalProperties": false
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}

@@ -1,0 +1,1579 @@
+{
+  "openapi": "3.0.0",
+  "info": {
+    "title": "Easypanel API - Branding Templates",
+    "version": "2.28.0"
+  },
+  "components": {
+    "securitySchemes": {
+      "bearerAuth": {
+        "type": "http",
+        "scheme": "bearer"
+      }
+    }
+  },
+  "paths": {
+    "/api/trpc/branding.getErrorPageSettings": {
+      "get": {
+        "operationId": "branding.getErrorPageSettings",
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ],
+        "tags": [
+          "Branding"
+        ],
+        "responses": {
+          "200": {
+            "description": ""
+          }
+        }
+      }
+    },
+    "/api/trpc/branding.getBasicSettings": {
+      "get": {
+        "operationId": "branding.getBasicSettings",
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ],
+        "tags": [
+          "Branding"
+        ],
+        "responses": {
+          "200": {
+            "description": ""
+          }
+        }
+      }
+    },
+    "/api/trpc/branding.getLogoSettings": {
+      "get": {
+        "operationId": "branding.getLogoSettings",
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ],
+        "tags": [
+          "Branding"
+        ],
+        "responses": {
+          "200": {
+            "description": ""
+          }
+        }
+      }
+    },
+    "/api/trpc/branding.getCustomCodeSettings": {
+      "get": {
+        "operationId": "branding.getCustomCodeSettings",
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ],
+        "tags": [
+          "Branding"
+        ],
+        "responses": {
+          "200": {
+            "description": ""
+          }
+        }
+      }
+    },
+    "/api/trpc/branding.getLinksSettings": {
+      "get": {
+        "operationId": "branding.getLinksSettings",
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ],
+        "tags": [
+          "Branding"
+        ],
+        "responses": {
+          "200": {
+            "description": ""
+          }
+        }
+      }
+    },
+    "/api/trpc/branding.getOtherLinksSettings": {
+      "get": {
+        "operationId": "branding.getOtherLinksSettings",
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ],
+        "tags": [
+          "Branding"
+        ],
+        "responses": {
+          "200": {
+            "description": ""
+          }
+        }
+      }
+    },
+    "/api/trpc/branding.getInterfaceSettingsPublic": {
+      "get": {
+        "operationId": "branding.getInterfaceSettingsPublic",
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ],
+        "tags": [
+          "Branding"
+        ],
+        "responses": {
+          "200": {
+            "description": ""
+          }
+        }
+      }
+    },
+    "/api/trpc/templates.createFromSchema": {
+      "post": {
+        "operationId": "templates.createFromSchema",
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ],
+        "tags": [
+          "Templates"
+        ],
+        "responses": {
+          "200": {
+            "description": ""
+          }
+        },
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "json": {
+                    "type": "object",
+                    "properties": {
+                      "name": {
+                        "type": "string",
+                        "default": "Unknown"
+                      },
+                      "projectName": {
+                        "type": "string",
+                        "pattern": "^[a-z0-9-_]+$"
+                      },
+                      "schema": {
+                        "type": "object",
+                        "properties": {
+                          "services": {
+                            "type": "array",
+                            "items": {
+                              "anyOf": [
+                                {
+                                  "type": "object",
+                                  "properties": {
+                                    "type": {
+                                      "type": "string",
+                                      "const": "app"
+                                    },
+                                    "data": {
+                                      "type": "object",
+                                      "properties": {
+                                        "serviceName": {
+                                          "type": "string",
+                                          "pattern": "^[a-z0-9-_]+$"
+                                        },
+                                        "source": {
+                                          "anyOf": [
+                                            {
+                                              "type": "object",
+                                              "properties": {
+                                                "type": {
+                                                  "type": "string",
+                                                  "const": "image"
+                                                },
+                                                "image": {
+                                                  "type": "string"
+                                                },
+                                                "username": {
+                                                  "type": "string"
+                                                },
+                                                "password": {
+                                                  "type": "string"
+                                                }
+                                              },
+                                              "required": [
+                                                "type",
+                                                "image"
+                                              ],
+                                              "additionalProperties": false
+                                            },
+                                            {
+                                              "type": "object",
+                                              "properties": {
+                                                "type": {
+                                                  "type": "string",
+                                                  "const": "github"
+                                                },
+                                                "owner": {
+                                                  "type": "string",
+                                                  "minLength": 1
+                                                },
+                                                "repo": {
+                                                  "type": "string",
+                                                  "minLength": 1
+                                                },
+                                                "ref": {
+                                                  "type": "string",
+                                                  "minLength": 1
+                                                },
+                                                "path": {
+                                                  "type": "string",
+                                                  "pattern": "^\\/"
+                                                },
+                                                "autoDeploy": {
+                                                  "type": "boolean"
+                                                }
+                                              },
+                                              "required": [
+                                                "type",
+                                                "owner",
+                                                "repo",
+                                                "ref",
+                                                "path",
+                                                "autoDeploy"
+                                              ],
+                                              "additionalProperties": false
+                                            },
+                                            {
+                                              "type": "object",
+                                              "properties": {
+                                                "type": {
+                                                  "type": "string",
+                                                  "const": "git"
+                                                },
+                                                "repo": {
+                                                  "type": "string",
+                                                  "minLength": 1
+                                                },
+                                                "ref": {
+                                                  "type": "string",
+                                                  "minLength": 1
+                                                },
+                                                "path": {
+                                                  "type": "string",
+                                                  "pattern": "^\\/"
+                                                }
+                                              },
+                                              "required": [
+                                                "type",
+                                                "repo",
+                                                "ref",
+                                                "path"
+                                              ],
+                                              "additionalProperties": false
+                                            },
+                                            {
+                                              "type": "object",
+                                              "properties": {
+                                                "type": {
+                                                  "type": "string",
+                                                  "const": "upload"
+                                                }
+                                              },
+                                              "required": [
+                                                "type"
+                                              ],
+                                              "additionalProperties": false
+                                            },
+                                            {
+                                              "type": "object",
+                                              "properties": {
+                                                "type": {
+                                                  "type": "string",
+                                                  "const": "dockerfile"
+                                                },
+                                                "dockerfile": {
+                                                  "type": "string",
+                                                  "minLength": 1
+                                                }
+                                              },
+                                              "required": [
+                                                "type",
+                                                "dockerfile"
+                                              ],
+                                              "additionalProperties": false
+                                            }
+                                          ]
+                                        },
+                                        "build": {
+                                          "anyOf": [
+                                            {
+                                              "type": "object",
+                                              "properties": {
+                                                "type": {
+                                                  "type": "string",
+                                                  "const": "dockerfile"
+                                                },
+                                                "file": {
+                                                  "type": "string"
+                                                }
+                                              },
+                                              "required": [
+                                                "type"
+                                              ],
+                                              "additionalProperties": false
+                                            },
+                                            {
+                                              "type": "object",
+                                              "properties": {
+                                                "type": {
+                                                  "type": "string",
+                                                  "const": "buildpacks"
+                                                },
+                                                "buildpacksBuilder": {
+                                                  "type": "string",
+                                                  "default": "heroku/builder:24"
+                                                }
+                                              },
+                                              "required": [
+                                                "type"
+                                              ],
+                                              "additionalProperties": false
+                                            },
+                                            {
+                                              "type": "object",
+                                              "properties": {
+                                                "type": {
+                                                  "type": "string",
+                                                  "const": "heroku-buildpacks"
+                                                }
+                                              },
+                                              "required": [
+                                                "type"
+                                              ],
+                                              "additionalProperties": false
+                                            },
+                                            {
+                                              "type": "object",
+                                              "properties": {
+                                                "type": {
+                                                  "type": "string",
+                                                  "const": "paketo-buildpacks"
+                                                }
+                                              },
+                                              "required": [
+                                                "type"
+                                              ],
+                                              "additionalProperties": false
+                                            },
+                                            {
+                                              "type": "object",
+                                              "properties": {
+                                                "type": {
+                                                  "type": "string",
+                                                  "const": "nixpacks"
+                                                },
+                                                "nixpacksVersion": {
+                                                  "type": "string",
+                                                  "default": "1.41.0"
+                                                },
+                                                "installCommand": {
+                                                  "type": "string"
+                                                },
+                                                "buildCommand": {
+                                                  "type": "string"
+                                                },
+                                                "startCommand": {
+                                                  "type": "string"
+                                                },
+                                                "nixPackages": {
+                                                  "type": "string"
+                                                },
+                                                "aptPackages": {
+                                                  "type": "string"
+                                                }
+                                              },
+                                              "required": [
+                                                "type"
+                                              ],
+                                              "additionalProperties": false
+                                            },
+                                            {
+                                              "type": "object",
+                                              "properties": {
+                                                "type": {
+                                                  "type": "string",
+                                                  "const": "railpack"
+                                                },
+                                                "railpackVersion": {
+                                                  "type": "string",
+                                                  "default": "0.17.1"
+                                                },
+                                                "buildCommand": {
+                                                  "type": "string"
+                                                },
+                                                "installCommand": {
+                                                  "type": "string"
+                                                },
+                                                "startCommand": {
+                                                  "type": "string"
+                                                },
+                                                "misePackages": {
+                                                  "type": "string"
+                                                },
+                                                "buildAptPackages": {
+                                                  "type": "string"
+                                                },
+                                                "deployAptPackages": {
+                                                  "type": "string"
+                                                }
+                                              },
+                                              "required": [
+                                                "type"
+                                              ],
+                                              "additionalProperties": false
+                                            }
+                                          ]
+                                        },
+                                        "env": {
+                                          "type": "string",
+                                          "default": ""
+                                        },
+                                        "basicAuth": {
+                                          "type": "array",
+                                          "items": {
+                                            "type": "object",
+                                            "properties": {
+                                              "username": {
+                                                "type": "string"
+                                              },
+                                              "password": {
+                                                "type": "string"
+                                              }
+                                            },
+                                            "required": [
+                                              "username",
+                                              "password"
+                                            ],
+                                            "additionalProperties": false
+                                          }
+                                        },
+                                        "deploy": {
+                                          "type": "object",
+                                          "properties": {
+                                            "replicas": {
+                                              "type": "number",
+                                              "default": 1
+                                            },
+                                            "command": {
+                                              "type": [
+                                                "string",
+                                                "null"
+                                              ],
+                                              "default": null
+                                            },
+                                            "zeroDowntime": {
+                                              "type": "boolean",
+                                              "default": true
+                                            },
+                                            "capAdd": {
+                                              "type": "array",
+                                              "items": {
+                                                "type": "string"
+                                              }
+                                            },
+                                            "capDrop": {
+                                              "type": "array",
+                                              "items": {
+                                                "type": "string"
+                                              }
+                                            },
+                                            "sysctls": {
+                                              "type": "object",
+                                              "additionalProperties": {
+                                                "type": "string"
+                                              }
+                                            },
+                                            "groups": {
+                                              "type": "array",
+                                              "items": {
+                                                "type": "string"
+                                              }
+                                            },
+                                            "tiniInit": {
+                                              "type": "boolean"
+                                            }
+                                          },
+                                          "additionalProperties": false,
+                                          "default": {}
+                                        },
+                                        "domains": {
+                                          "type": "array",
+                                          "items": {
+                                            "type": "object",
+                                            "properties": {
+                                              "host": {
+                                                "type": "string",
+                                                "pattern": "^[^\\s*]+$"
+                                              },
+                                              "https": {
+                                                "type": "boolean",
+                                                "default": true
+                                              },
+                                              "port": {
+                                                "type": "number",
+                                                "default": 80
+                                              },
+                                              "path": {
+                                                "type": "string",
+                                                "pattern": "^\\/",
+                                                "default": "/"
+                                              },
+                                              "middlewares": {
+                                                "type": "array",
+                                                "items": {
+                                                  "type": "string"
+                                                }
+                                              },
+                                              "certificateResolver": {
+                                                "type": "string"
+                                              },
+                                              "wildcard": {
+                                                "type": "boolean",
+                                                "default": false
+                                              },
+                                              "internalProtocol": {
+                                                "type": "string",
+                                                "enum": [
+                                                  "http",
+                                                  "https"
+                                                ],
+                                                "default": "http"
+                                              },
+                                              "service": {
+                                                "type": "string"
+                                              }
+                                            },
+                                            "required": [
+                                              "host"
+                                            ],
+                                            "additionalProperties": false
+                                          },
+                                          "default": []
+                                        },
+                                        "mounts": {
+                                          "type": "array",
+                                          "items": {
+                                            "anyOf": [
+                                              {
+                                                "type": "object",
+                                                "properties": {
+                                                  "type": {
+                                                    "type": "string",
+                                                    "const": "bind"
+                                                  },
+                                                  "hostPath": {
+                                                    "type": "string",
+                                                    "minLength": 1
+                                                  },
+                                                  "mountPath": {
+                                                    "type": "string",
+                                                    "minLength": 1
+                                                  }
+                                                },
+                                                "required": [
+                                                  "type",
+                                                  "hostPath",
+                                                  "mountPath"
+                                                ],
+                                                "additionalProperties": false
+                                              },
+                                              {
+                                                "type": "object",
+                                                "properties": {
+                                                  "type": {
+                                                    "type": "string",
+                                                    "const": "volume"
+                                                  },
+                                                  "name": {
+                                                    "type": "string",
+                                                    "pattern": "^[a-z0-9-_]+$"
+                                                  },
+                                                  "mountPath": {
+                                                    "type": "string",
+                                                    "minLength": 1
+                                                  }
+                                                },
+                                                "required": [
+                                                  "type",
+                                                  "name",
+                                                  "mountPath"
+                                                ],
+                                                "additionalProperties": false
+                                              },
+                                              {
+                                                "type": "object",
+                                                "properties": {
+                                                  "type": {
+                                                    "type": "string",
+                                                    "const": "file"
+                                                  },
+                                                  "content": {
+                                                    "type": "string"
+                                                  },
+                                                  "mountPath": {
+                                                    "type": "string",
+                                                    "minLength": 1
+                                                  }
+                                                },
+                                                "required": [
+                                                  "type",
+                                                  "content",
+                                                  "mountPath"
+                                                ],
+                                                "additionalProperties": false
+                                              }
+                                            ]
+                                          },
+                                          "default": []
+                                        },
+                                        "ports": {
+                                          "type": "array",
+                                          "items": {
+                                            "type": "object",
+                                            "properties": {
+                                              "published": {
+                                                "type": "number"
+                                              },
+                                              "target": {
+                                                "type": "number"
+                                              },
+                                              "protocol": {
+                                                "type": "string",
+                                                "enum": [
+                                                  "tcp",
+                                                  "udp"
+                                                ],
+                                                "default": "tcp"
+                                              }
+                                            },
+                                            "required": [
+                                              "published",
+                                              "target"
+                                            ],
+                                            "additionalProperties": false
+                                          },
+                                          "default": []
+                                        },
+                                        "resources": {
+                                          "type": "object",
+                                          "properties": {
+                                            "memoryReservation": {
+                                              "type": "number"
+                                            },
+                                            "memoryLimit": {
+                                              "type": "number"
+                                            },
+                                            "cpuReservation": {
+                                              "type": "number"
+                                            },
+                                            "cpuLimit": {
+                                              "type": "number"
+                                            }
+                                          },
+                                          "required": [
+                                            "memoryReservation",
+                                            "memoryLimit",
+                                            "cpuReservation",
+                                            "cpuLimit"
+                                          ],
+                                          "additionalProperties": false
+                                        },
+                                        "maintenance": {
+                                          "type": "object",
+                                          "properties": {
+                                            "enabled": {
+                                              "type": "boolean"
+                                            },
+                                            "title": {
+                                              "type": "string"
+                                            },
+                                            "subtitle": {
+                                              "type": "string"
+                                            },
+                                            "customLogo": {
+                                              "type": "string"
+                                            },
+                                            "customCss": {
+                                              "type": "string"
+                                            },
+                                            "hideLogo": {
+                                              "type": "boolean"
+                                            },
+                                            "hideLinks": {
+                                              "type": "boolean"
+                                            }
+                                          },
+                                          "required": [
+                                            "enabled"
+                                          ],
+                                          "additionalProperties": false
+                                        },
+                                        "scripts": {
+                                          "type": "array",
+                                          "items": {
+                                            "type": "object",
+                                            "properties": {
+                                              "name": {
+                                                "type": "string",
+                                                "minLength": 1
+                                              },
+                                              "script": {
+                                                "type": "string",
+                                                "minLength": 1
+                                              }
+                                            },
+                                            "required": [
+                                              "name",
+                                              "script"
+                                            ],
+                                            "additionalProperties": false
+                                          }
+                                        }
+                                      },
+                                      "required": [
+                                        "serviceName"
+                                      ],
+                                      "additionalProperties": false
+                                    }
+                                  },
+                                  "required": [
+                                    "type",
+                                    "data"
+                                  ],
+                                  "additionalProperties": false
+                                },
+                                {
+                                  "type": "object",
+                                  "properties": {
+                                    "type": {
+                                      "type": "string",
+                                      "const": "mysql"
+                                    },
+                                    "data": {
+                                      "type": "object",
+                                      "properties": {
+                                        "serviceName": {
+                                          "$ref": "#/properties/json/properties/schema/properties/services/items/anyOf/0/properties/data/properties/serviceName"
+                                        },
+                                        "databaseName": {
+                                          "type": "string",
+                                          "pattern": "^[a-zA-Z][a-zA-Z0-9_-]{0,62}$"
+                                        },
+                                        "user": {
+                                          "type": "string",
+                                          "pattern": "^[a-zA-Z][a-zA-Z0-9_]{0,62}$"
+                                        },
+                                        "image": {
+                                          "type": "string",
+                                          "default": "mysql:9"
+                                        },
+                                        "exposedPort": {
+                                          "type": "number"
+                                        },
+                                        "password": {
+                                          "type": "string",
+                                          "default": "1a108d59e584f17aa3d2"
+                                        },
+                                        "rootPassword": {
+                                          "$ref": "#/properties/json/properties/schema/properties/services/items/anyOf/1/properties/data/properties/password"
+                                        },
+                                        "resources": {
+                                          "$ref": "#/properties/json/properties/schema/properties/services/items/anyOf/0/properties/data/properties/resources"
+                                        },
+                                        "backup": {
+                                          "type": "object",
+                                          "properties": {
+                                            "enabled": {
+                                              "type": "boolean"
+                                            },
+                                            "schedule": {
+                                              "type": "string",
+                                              "minLength": 1
+                                            },
+                                            "destinationId": {
+                                              "type": "string",
+                                              "minLength": 1
+                                            },
+                                            "prefix": {
+                                              "type": "string",
+                                              "pattern": "^[\\w-/.]+$"
+                                            },
+                                            "databaseName": {
+                                              "type": "string"
+                                            }
+                                          },
+                                          "required": [
+                                            "enabled",
+                                            "schedule",
+                                            "destinationId",
+                                            "prefix"
+                                          ],
+                                          "additionalProperties": false
+                                        },
+                                        "env": {
+                                          "type": "string"
+                                        },
+                                        "configFile": {
+                                          "type": "string"
+                                        },
+                                        "command": {
+                                          "type": "string"
+                                        },
+                                        "phpMyAdmin": {
+                                          "type": "object",
+                                          "properties": {
+                                            "enabled": {
+                                              "type": "boolean",
+                                              "default": false
+                                            },
+                                            "token": {
+                                              "type": "string",
+                                              "default": "152896aafb4e4411bf2d"
+                                            }
+                                          },
+                                          "additionalProperties": false
+                                        },
+                                        "dbGate": {
+                                          "type": "object",
+                                          "properties": {
+                                            "enabled": {
+                                              "type": "boolean",
+                                              "default": false
+                                            },
+                                            "token": {
+                                              "type": "string",
+                                              "default": "4d6e93cb7d2685ce3f72"
+                                            }
+                                          },
+                                          "additionalProperties": false
+                                        }
+                                      },
+                                      "required": [
+                                        "serviceName"
+                                      ],
+                                      "additionalProperties": false
+                                    }
+                                  },
+                                  "required": [
+                                    "type",
+                                    "data"
+                                  ],
+                                  "additionalProperties": false
+                                },
+                                {
+                                  "type": "object",
+                                  "properties": {
+                                    "type": {
+                                      "type": "string",
+                                      "const": "mariadb"
+                                    },
+                                    "data": {
+                                      "type": "object",
+                                      "properties": {
+                                        "serviceName": {
+                                          "$ref": "#/properties/json/properties/schema/properties/services/items/anyOf/0/properties/data/properties/serviceName"
+                                        },
+                                        "databaseName": {
+                                          "$ref": "#/properties/json/properties/schema/properties/services/items/anyOf/1/properties/data/properties/databaseName"
+                                        },
+                                        "user": {
+                                          "$ref": "#/properties/json/properties/schema/properties/services/items/anyOf/1/properties/data/properties/user"
+                                        },
+                                        "image": {
+                                          "type": "string",
+                                          "default": "mariadb:11"
+                                        },
+                                        "exposedPort": {
+                                          "type": "number"
+                                        },
+                                        "password": {
+                                          "$ref": "#/properties/json/properties/schema/properties/services/items/anyOf/1/properties/data/properties/password"
+                                        },
+                                        "rootPassword": {
+                                          "$ref": "#/properties/json/properties/schema/properties/services/items/anyOf/1/properties/data/properties/password"
+                                        },
+                                        "resources": {
+                                          "$ref": "#/properties/json/properties/schema/properties/services/items/anyOf/0/properties/data/properties/resources"
+                                        },
+                                        "backup": {
+                                          "$ref": "#/properties/json/properties/schema/properties/services/items/anyOf/1/properties/data/properties/backup"
+                                        },
+                                        "env": {
+                                          "type": "string"
+                                        },
+                                        "configFile": {
+                                          "type": "string"
+                                        },
+                                        "command": {
+                                          "type": "string"
+                                        },
+                                        "phpMyAdmin": {
+                                          "$ref": "#/properties/json/properties/schema/properties/services/items/anyOf/1/properties/data/properties/phpMyAdmin"
+                                        },
+                                        "dbGate": {
+                                          "$ref": "#/properties/json/properties/schema/properties/services/items/anyOf/1/properties/data/properties/dbGate"
+                                        }
+                                      },
+                                      "required": [
+                                        "serviceName"
+                                      ],
+                                      "additionalProperties": false
+                                    }
+                                  },
+                                  "required": [
+                                    "type",
+                                    "data"
+                                  ],
+                                  "additionalProperties": false
+                                },
+                                {
+                                  "type": "object",
+                                  "properties": {
+                                    "type": {
+                                      "type": "string",
+                                      "const": "mongo"
+                                    },
+                                    "data": {
+                                      "type": "object",
+                                      "properties": {
+                                        "serviceName": {
+                                          "$ref": "#/properties/json/properties/schema/properties/services/items/anyOf/0/properties/data/properties/serviceName"
+                                        },
+                                        "user": {
+                                          "$ref": "#/properties/json/properties/schema/properties/services/items/anyOf/1/properties/data/properties/user"
+                                        },
+                                        "image": {
+                                          "type": "string",
+                                          "default": "mongo:8"
+                                        },
+                                        "exposedPort": {
+                                          "type": "number"
+                                        },
+                                        "password": {
+                                          "$ref": "#/properties/json/properties/schema/properties/services/items/anyOf/1/properties/data/properties/password"
+                                        },
+                                        "backup": {
+                                          "$ref": "#/properties/json/properties/schema/properties/services/items/anyOf/1/properties/data/properties/backup"
+                                        },
+                                        "resources": {
+                                          "$ref": "#/properties/json/properties/schema/properties/services/items/anyOf/0/properties/data/properties/resources"
+                                        },
+                                        "env": {
+                                          "type": "string"
+                                        },
+                                        "command": {
+                                          "type": "string"
+                                        },
+                                        "mongoExpress": {
+                                          "type": "object",
+                                          "properties": {
+                                            "enabled": {
+                                              "type": "boolean",
+                                              "default": false
+                                            },
+                                            "token": {
+                                              "type": "string",
+                                              "default": "5c7a4b05e9c49220ae7d"
+                                            }
+                                          },
+                                          "additionalProperties": false
+                                        },
+                                        "dbGate": {
+                                          "$ref": "#/properties/json/properties/schema/properties/services/items/anyOf/1/properties/data/properties/dbGate"
+                                        }
+                                      },
+                                      "required": [
+                                        "serviceName"
+                                      ],
+                                      "additionalProperties": false
+                                    }
+                                  },
+                                  "required": [
+                                    "type",
+                                    "data"
+                                  ],
+                                  "additionalProperties": false
+                                },
+                                {
+                                  "type": "object",
+                                  "properties": {
+                                    "type": {
+                                      "type": "string",
+                                      "const": "postgres"
+                                    },
+                                    "data": {
+                                      "type": "object",
+                                      "properties": {
+                                        "serviceName": {
+                                          "$ref": "#/properties/json/properties/schema/properties/services/items/anyOf/0/properties/data/properties/serviceName"
+                                        },
+                                        "databaseName": {
+                                          "$ref": "#/properties/json/properties/schema/properties/services/items/anyOf/1/properties/data/properties/databaseName"
+                                        },
+                                        "user": {
+                                          "$ref": "#/properties/json/properties/schema/properties/services/items/anyOf/1/properties/data/properties/user"
+                                        },
+                                        "image": {
+                                          "type": "string",
+                                          "default": "postgres:17"
+                                        },
+                                        "exposedPort": {
+                                          "type": "number"
+                                        },
+                                        "password": {
+                                          "$ref": "#/properties/json/properties/schema/properties/services/items/anyOf/1/properties/data/properties/password"
+                                        },
+                                        "backup": {
+                                          "$ref": "#/properties/json/properties/schema/properties/services/items/anyOf/1/properties/data/properties/backup"
+                                        },
+                                        "resources": {
+                                          "$ref": "#/properties/json/properties/schema/properties/services/items/anyOf/0/properties/data/properties/resources"
+                                        },
+                                        "env": {
+                                          "type": "string"
+                                        },
+                                        "command": {
+                                          "type": "string"
+                                        },
+                                        "pgWeb": {
+                                          "type": "object",
+                                          "properties": {
+                                            "enabled": {
+                                              "type": "boolean",
+                                              "default": false
+                                            },
+                                            "token": {
+                                              "type": "string",
+                                              "default": "b9b39a14ce6cc54c44bd"
+                                            }
+                                          },
+                                          "additionalProperties": false
+                                        },
+                                        "dbGate": {
+                                          "$ref": "#/properties/json/properties/schema/properties/services/items/anyOf/1/properties/data/properties/dbGate"
+                                        }
+                                      },
+                                      "required": [
+                                        "serviceName"
+                                      ],
+                                      "additionalProperties": false
+                                    }
+                                  },
+                                  "required": [
+                                    "type",
+                                    "data"
+                                  ],
+                                  "additionalProperties": false
+                                },
+                                {
+                                  "type": "object",
+                                  "properties": {
+                                    "type": {
+                                      "type": "string",
+                                      "const": "redis"
+                                    },
+                                    "data": {
+                                      "type": "object",
+                                      "properties": {
+                                        "serviceName": {
+                                          "$ref": "#/properties/json/properties/schema/properties/services/items/anyOf/0/properties/data/properties/serviceName"
+                                        },
+                                        "image": {
+                                          "type": "string",
+                                          "default": "redis:7"
+                                        },
+                                        "exposedPort": {
+                                          "type": "number"
+                                        },
+                                        "password": {
+                                          "$ref": "#/properties/json/properties/schema/properties/services/items/anyOf/1/properties/data/properties/password"
+                                        },
+                                        "resources": {
+                                          "$ref": "#/properties/json/properties/schema/properties/services/items/anyOf/0/properties/data/properties/resources"
+                                        },
+                                        "env": {
+                                          "type": "string"
+                                        },
+                                        "command": {
+                                          "type": "string"
+                                        },
+                                        "redisCommander": {
+                                          "type": "object",
+                                          "properties": {
+                                            "enabled": {
+                                              "type": "boolean",
+                                              "default": false
+                                            },
+                                            "token": {
+                                              "type": "string",
+                                              "default": "8a33e32b21ba2839ca82"
+                                            }
+                                          },
+                                          "additionalProperties": false
+                                        },
+                                        "dbGate": {
+                                          "$ref": "#/properties/json/properties/schema/properties/services/items/anyOf/1/properties/data/properties/dbGate"
+                                        }
+                                      },
+                                      "required": [
+                                        "serviceName"
+                                      ],
+                                      "additionalProperties": false
+                                    }
+                                  },
+                                  "required": [
+                                    "type",
+                                    "data"
+                                  ],
+                                  "additionalProperties": false
+                                },
+                                {
+                                  "type": "object",
+                                  "properties": {
+                                    "type": {
+                                      "type": "string",
+                                      "const": "compose"
+                                    },
+                                    "data": {
+                                      "type": "object",
+                                      "properties": {
+                                        "serviceName": {
+                                          "$ref": "#/properties/json/properties/schema/properties/services/items/anyOf/0/properties/data/properties/serviceName"
+                                        },
+                                        "source": {
+                                          "anyOf": [
+                                            {
+                                              "type": "object",
+                                              "properties": {
+                                                "type": {
+                                                  "type": "string",
+                                                  "const": "inline"
+                                                },
+                                                "content": {
+                                                  "type": "string"
+                                                }
+                                              },
+                                              "required": [
+                                                "type",
+                                                "content"
+                                              ],
+                                              "additionalProperties": false
+                                            },
+                                            {
+                                              "type": "object",
+                                              "properties": {
+                                                "type": {
+                                                  "type": "string",
+                                                  "const": "git"
+                                                },
+                                                "repo": {
+                                                  "type": "string"
+                                                },
+                                                "ref": {
+                                                  "type": "string"
+                                                },
+                                                "rootPath": {
+                                                  "type": "string"
+                                                },
+                                                "composeFile": {
+                                                  "type": "string"
+                                                }
+                                              },
+                                              "required": [
+                                                "type",
+                                                "repo",
+                                                "ref",
+                                                "rootPath",
+                                                "composeFile"
+                                              ],
+                                              "additionalProperties": false
+                                            }
+                                          ]
+                                        },
+                                        "env": {
+                                          "type": "string",
+                                          "default": ""
+                                        },
+                                        "createDotEnv": {
+                                          "type": "boolean",
+                                          "default": false
+                                        },
+                                        "domains": {
+                                          "$ref": "#/properties/json/properties/schema/properties/services/items/anyOf/0/properties/data/properties/domains"
+                                        },
+                                        "redirects": {
+                                          "type": "array",
+                                          "items": {
+                                            "type": "object",
+                                            "properties": {
+                                              "regex": {
+                                                "type": "string"
+                                              },
+                                              "replacement": {
+                                                "type": "string"
+                                              },
+                                              "permanent": {
+                                                "type": "boolean"
+                                              },
+                                              "enabled": {
+                                                "type": "boolean"
+                                              }
+                                            },
+                                            "required": [
+                                              "regex",
+                                              "replacement",
+                                              "permanent",
+                                              "enabled"
+                                            ],
+                                            "additionalProperties": false
+                                          }
+                                        },
+                                        "basicAuth": {
+                                          "type": "array",
+                                          "items": {
+                                            "type": "object",
+                                            "properties": {
+                                              "username": {
+                                                "type": "string"
+                                              },
+                                              "password": {
+                                                "type": "string"
+                                              }
+                                            },
+                                            "required": [
+                                              "username",
+                                              "password"
+                                            ],
+                                            "additionalProperties": false
+                                          }
+                                        },
+                                        "maintenance": {
+                                          "$ref": "#/properties/json/properties/schema/properties/services/items/anyOf/0/properties/data/properties/maintenance"
+                                        }
+                                      },
+                                      "required": [
+                                        "serviceName"
+                                      ],
+                                      "additionalProperties": false
+                                    }
+                                  },
+                                  "required": [
+                                    "type",
+                                    "data"
+                                  ],
+                                  "additionalProperties": false
+                                }
+                              ]
+                            }
+                          }
+                        },
+                        "required": [
+                          "services"
+                        ],
+                        "additionalProperties": false
+                      }
+                    },
+                    "required": [
+                      "projectName",
+                      "schema"
+                    ],
+                    "additionalProperties": false
+                  }
+                },
+                "required": [
+                  "json"
+                ],
+                "additionalProperties": false
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/trpc/branding.setErrorPageSettings": {
+      "post": {
+        "operationId": "branding.setErrorPageSettings",
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ],
+        "tags": [
+          "Branding"
+        ],
+        "responses": {
+          "200": {
+            "description": ""
+          }
+        },
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "json": {
+                    "type": "object",
+                    "properties": {
+                      "customCss": {
+                        "type": "string"
+                      },
+                      "hideLogo": {
+                        "type": "boolean"
+                      },
+                      "hideLinks": {
+                        "type": "boolean"
+                      }
+                    },
+                    "required": [
+                      "hideLogo",
+                      "hideLinks"
+                    ],
+                    "additionalProperties": false
+                  }
+                },
+                "required": [
+                  "json"
+                ],
+                "additionalProperties": false
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/trpc/branding.setBasicSettings": {
+      "post": {
+        "operationId": "branding.setBasicSettings",
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ],
+        "tags": [
+          "Branding"
+        ],
+        "responses": {
+          "200": {
+            "description": ""
+          }
+        },
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "json": {
+                    "type": "object",
+                    "properties": {
+                      "hideIp": {
+                        "type": "boolean"
+                      },
+                      "hideNotes": {
+                        "type": "boolean"
+                      },
+                      "serverName": {
+                        "type": "string"
+                      },
+                      "serverColor": {
+                        "type": "string"
+                      }
+                    },
+                    "required": [
+                      "hideIp",
+                      "hideNotes",
+                      "serverName",
+                      "serverColor"
+                    ],
+                    "additionalProperties": false
+                  }
+                },
+                "required": [
+                  "json"
+                ],
+                "additionalProperties": false
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/trpc/branding.setLogoSettings": {
+      "post": {
+        "operationId": "branding.setLogoSettings",
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ],
+        "tags": [
+          "Branding"
+        ],
+        "responses": {
+          "200": {
+            "description": ""
+          }
+        },
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "json": {
+                    "type": "object",
+                    "properties": {
+                      "lightLogoMark": {
+                        "type": "string"
+                      },
+                      "darkLogoMark": {
+                        "type": "string"
+                      },
+                      "lightLogo": {
+                        "type": "string"
+                      },
+                      "darkLogo": {
+                        "type": "string"
+                      }
+                    },
+                    "additionalProperties": false
+                  }
+                },
+                "required": [
+                  "json"
+                ],
+                "additionalProperties": false
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/trpc/branding.setCustomCodeSettings": {
+      "post": {
+        "operationId": "branding.setCustomCodeSettings",
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ],
+        "tags": [
+          "Branding"
+        ],
+        "responses": {
+          "200": {
+            "description": ""
+          }
+        },
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "json": {
+                    "type": "object",
+                    "properties": {
+                      "customCode": {
+                        "type": "string"
+                      }
+                    },
+                    "additionalProperties": false
+                  }
+                },
+                "required": [
+                  "json"
+                ],
+                "additionalProperties": false
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/trpc/branding.setLinksSettings": {
+      "post": {
+        "operationId": "branding.setLinksSettings",
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ],
+        "tags": [
+          "Branding"
+        ],
+        "responses": {
+          "200": {
+            "description": ""
+          }
+        },
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "json": {
+                    "type": "object",
+                    "properties": {
+                      "hideDocumentationLink": {
+                        "type": "boolean"
+                      },
+                      "hideDiscordLink": {
+                        "type": "boolean"
+                      },
+                      "hideFeedbackLink": {
+                        "type": "boolean"
+                      },
+                      "hideChangelogLink": {
+                        "type": "boolean"
+                      },
+                      "hideOtherLinks": {
+                        "type": "boolean"
+                      }
+                    },
+                    "required": [
+                      "hideDocumentationLink",
+                      "hideDiscordLink",
+                      "hideFeedbackLink",
+                      "hideChangelogLink",
+                      "hideOtherLinks"
+                    ],
+                    "additionalProperties": false
+                  }
+                },
+                "required": [
+                  "json"
+                ],
+                "additionalProperties": false
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}

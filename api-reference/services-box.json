@@ -1,0 +1,2503 @@
+{
+  "openapi": "3.0.0",
+  "info": {
+    "title": "Easypanel API - Services Box",
+    "version": "2.28.0"
+  },
+  "components": {
+    "securitySchemes": {
+      "bearerAuth": {
+        "type": "http",
+        "scheme": "bearer"
+      }
+    }
+  },
+  "paths": {
+    "/api/trpc/services.box.inspectService": {
+      "get": {
+        "operationId": "services.box.inspectService",
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ],
+        "tags": [
+          "Services / Box"
+        ],
+        "responses": {
+          "200": {
+            "description": ""
+          }
+        },
+        "parameters": [
+          {
+            "in": "query",
+            "name": "input",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "json": {
+                      "type": "object",
+                      "properties": {
+                        "projectName": {
+                          "type": "string",
+                          "pattern": "^[a-z0-9-_]+$"
+                        },
+                        "serviceName": {
+                          "type": "string",
+                          "pattern": "^[a-z0-9-_]+$"
+                        }
+                      },
+                      "required": [
+                        "projectName",
+                        "serviceName"
+                      ],
+                      "additionalProperties": false
+                    }
+                  },
+                  "required": [
+                    "json"
+                  ],
+                  "additionalProperties": false
+                }
+              }
+            }
+          }
+        ]
+      }
+    },
+    "/api/trpc/services.box.listPresets": {
+      "get": {
+        "operationId": "services.box.listPresets",
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ],
+        "tags": [
+          "Services / Box"
+        ],
+        "responses": {
+          "200": {
+            "description": ""
+          }
+        }
+      }
+    },
+    "/api/trpc/services.box.createService": {
+      "post": {
+        "operationId": "services.box.createService",
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ],
+        "tags": [
+          "Services / Box"
+        ],
+        "responses": {
+          "200": {
+            "description": ""
+          }
+        },
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "json": {
+                    "type": "object",
+                    "properties": {
+                      "projectName": {
+                        "type": "string",
+                        "pattern": "^[a-z0-9-_]+$"
+                      },
+                      "serviceName": {
+                        "type": "string",
+                        "pattern": "^[a-z0-9-_]+$"
+                      },
+                      "codeInitialized": {
+                        "type": "boolean",
+                        "default": false
+                      },
+                      "deployment": {
+                        "type": "object",
+                        "properties": {
+                          "script": {
+                            "type": "string",
+                            "default": ""
+                          },
+                          "token": {
+                            "type": "string",
+                            "default": "ec3a625ec833afe19351"
+                          }
+                        },
+                        "additionalProperties": false,
+                        "default": {}
+                      },
+                      "git": {
+                        "type": "object",
+                        "properties": {
+                          "name": {
+                            "type": "string"
+                          },
+                          "email": {
+                            "type": "string"
+                          },
+                          "url": {
+                            "type": "string"
+                          },
+                          "branch": {
+                            "type": "string"
+                          }
+                        },
+                        "additionalProperties": false
+                      },
+                      "domains": {
+                        "type": "array",
+                        "items": {
+                          "type": "object",
+                          "properties": {
+                            "host": {
+                              "type": "string",
+                              "pattern": "^[^\\s*]+$"
+                            },
+                            "https": {
+                              "type": "boolean",
+                              "default": true
+                            },
+                            "port": {
+                              "type": "number",
+                              "default": 80
+                            },
+                            "path": {
+                              "type": "string",
+                              "pattern": "^\\/",
+                              "default": "/"
+                            },
+                            "middlewares": {
+                              "type": "array",
+                              "items": {
+                                "type": "string"
+                              }
+                            },
+                            "certificateResolver": {
+                              "type": "string"
+                            },
+                            "wildcard": {
+                              "type": "boolean",
+                              "default": false
+                            },
+                            "internalProtocol": {
+                              "type": "string",
+                              "enum": [
+                                "http",
+                                "https"
+                              ],
+                              "default": "http"
+                            },
+                            "service": {
+                              "type": "string"
+                            }
+                          },
+                          "required": [
+                            "host"
+                          ],
+                          "additionalProperties": false
+                        },
+                        "default": []
+                      },
+                      "redirects": {
+                        "type": "array",
+                        "items": {
+                          "type": "object",
+                          "properties": {
+                            "regex": {
+                              "type": "string"
+                            },
+                            "replacement": {
+                              "type": "string"
+                            },
+                            "permanent": {
+                              "type": "boolean"
+                            },
+                            "enabled": {
+                              "type": "boolean"
+                            }
+                          },
+                          "required": [
+                            "regex",
+                            "replacement",
+                            "permanent",
+                            "enabled"
+                          ],
+                          "additionalProperties": false
+                        },
+                        "default": []
+                      },
+                      "basicAuth": {
+                        "type": "array",
+                        "items": {
+                          "type": "object",
+                          "properties": {
+                            "username": {
+                              "type": "string"
+                            },
+                            "password": {
+                              "type": "string"
+                            }
+                          },
+                          "required": [
+                            "username",
+                            "password"
+                          ],
+                          "additionalProperties": false
+                        },
+                        "default": []
+                      },
+                      "mounts": {
+                        "type": "array",
+                        "items": {
+                          "anyOf": [
+                            {
+                              "type": "object",
+                              "properties": {
+                                "type": {
+                                  "type": "string",
+                                  "const": "bind"
+                                },
+                                "hostPath": {
+                                  "type": "string",
+                                  "minLength": 1
+                                },
+                                "mountPath": {
+                                  "type": "string",
+                                  "minLength": 1
+                                }
+                              },
+                              "required": [
+                                "type",
+                                "hostPath",
+                                "mountPath"
+                              ],
+                              "additionalProperties": false
+                            },
+                            {
+                              "type": "object",
+                              "properties": {
+                                "type": {
+                                  "type": "string",
+                                  "const": "volume"
+                                },
+                                "name": {
+                                  "type": "string",
+                                  "pattern": "^[a-z0-9-_]+$"
+                                },
+                                "mountPath": {
+                                  "type": "string",
+                                  "minLength": 1
+                                }
+                              },
+                              "required": [
+                                "type",
+                                "name",
+                                "mountPath"
+                              ],
+                              "additionalProperties": false
+                            },
+                            {
+                              "type": "object",
+                              "properties": {
+                                "type": {
+                                  "type": "string",
+                                  "const": "file"
+                                },
+                                "content": {
+                                  "type": "string"
+                                },
+                                "mountPath": {
+                                  "type": "string",
+                                  "minLength": 1
+                                }
+                              },
+                              "required": [
+                                "type",
+                                "content",
+                                "mountPath"
+                              ],
+                              "additionalProperties": false
+                            }
+                          ]
+                        },
+                        "default": []
+                      },
+                      "processes": {
+                        "type": "array",
+                        "items": {
+                          "type": "object",
+                          "properties": {
+                            "name": {
+                              "type": "string",
+                              "pattern": "^[a-z0-9-_]+$"
+                            },
+                            "command": {
+                              "type": "string"
+                            },
+                            "directory": {
+                              "type": "string"
+                            },
+                            "enabled": {
+                              "type": "boolean"
+                            }
+                          },
+                          "required": [
+                            "name",
+                            "command",
+                            "directory",
+                            "enabled"
+                          ],
+                          "additionalProperties": false
+                        },
+                        "default": []
+                      },
+                      "scripts": {
+                        "type": "array",
+                        "items": {
+                          "type": "object",
+                          "properties": {
+                            "name": {
+                              "type": "string"
+                            },
+                            "content": {
+                              "type": "string"
+                            },
+                            "webhookToken": {
+                              "type": "string"
+                            },
+                            "schedule": {
+                              "type": "string"
+                            },
+                            "enabled": {
+                              "type": "boolean"
+                            }
+                          },
+                          "required": [
+                            "name",
+                            "content",
+                            "webhookToken",
+                            "enabled"
+                          ],
+                          "additionalProperties": false
+                        },
+                        "default": []
+                      },
+                      "ports": {
+                        "type": "array",
+                        "items": {
+                          "type": "object",
+                          "properties": {
+                            "published": {
+                              "type": "number"
+                            },
+                            "target": {
+                              "type": "number"
+                            },
+                            "protocol": {
+                              "type": "string",
+                              "enum": [
+                                "tcp",
+                                "udp"
+                              ],
+                              "default": "tcp"
+                            }
+                          },
+                          "required": [
+                            "published",
+                            "target"
+                          ],
+                          "additionalProperties": false
+                        },
+                        "default": []
+                      },
+                      "resources": {
+                        "type": "object",
+                        "properties": {
+                          "memoryReservation": {
+                            "type": "number"
+                          },
+                          "memoryLimit": {
+                            "type": "number"
+                          },
+                          "cpuReservation": {
+                            "type": "number"
+                          },
+                          "cpuLimit": {
+                            "type": "number"
+                          }
+                        },
+                        "required": [
+                          "memoryReservation",
+                          "memoryLimit",
+                          "cpuReservation",
+                          "cpuLimit"
+                        ],
+                        "additionalProperties": false
+                      },
+                      "modules": {
+                        "type": "object",
+                        "properties": {
+                          "ide": {
+                            "type": "boolean",
+                            "default": false
+                          },
+                          "advanced": {
+                            "type": "boolean",
+                            "default": false
+                          },
+                          "php": {
+                            "type": "boolean",
+                            "default": false
+                          },
+                          "nodejs": {
+                            "type": "boolean",
+                            "default": false
+                          },
+                          "nginx": {
+                            "type": "boolean",
+                            "default": false
+                          },
+                          "python": {
+                            "type": "boolean",
+                            "default": false
+                          },
+                          "ruby": {
+                            "type": "boolean",
+                            "default": false
+                          },
+                          "deployments": {
+                            "type": "boolean",
+                            "default": false
+                          },
+                          "git": {
+                            "type": "boolean",
+                            "default": false
+                          },
+                          "domains": {
+                            "type": "boolean",
+                            "default": false
+                          },
+                          "redirects": {
+                            "type": "boolean",
+                            "default": false
+                          },
+                          "basicAuth": {
+                            "type": "boolean",
+                            "default": false
+                          },
+                          "mounts": {
+                            "type": "boolean",
+                            "default": false
+                          },
+                          "processes": {
+                            "type": "boolean",
+                            "default": false
+                          },
+                          "scripts": {
+                            "type": "boolean",
+                            "default": false
+                          },
+                          "ports": {
+                            "type": "boolean",
+                            "default": false
+                          },
+                          "resources": {
+                            "type": "boolean",
+                            "default": false
+                          },
+                          "env": {
+                            "type": "boolean",
+                            "default": false
+                          }
+                        },
+                        "additionalProperties": false,
+                        "default": {}
+                      },
+                      "ide": {
+                        "type": "object",
+                        "properties": {
+                          "defaultFolder": {
+                            "type": "string",
+                            "default": "/code"
+                          },
+                          "token": {
+                            "type": "string",
+                            "default": "49a28feb2cd09fee7eff"
+                          },
+                          "enabled": {
+                            "type": "boolean",
+                            "default": true
+                          }
+                        },
+                        "additionalProperties": false
+                      },
+                      "advanced": {
+                        "type": "object",
+                        "properties": {
+                          "buildScript": {
+                            "type": "string",
+                            "default": ""
+                          },
+                          "startScript": {
+                            "type": "string",
+                            "default": ""
+                          }
+                        },
+                        "additionalProperties": false
+                      },
+                      "php": {
+                        "type": "object",
+                        "properties": {
+                          "version": {
+                            "type": "string",
+                            "default": "8.3"
+                          },
+                          "maxUploadSize": {
+                            "type": "string",
+                            "default": "128M"
+                          },
+                          "maxExecutionTime": {
+                            "type": "string",
+                            "default": "30"
+                          },
+                          "opcache": {
+                            "type": "boolean",
+                            "default": true
+                          },
+                          "phpIni": {
+                            "type": "string",
+                            "default": ""
+                          },
+                          "enabled": {
+                            "type": "boolean",
+                            "default": true
+                          },
+                          "ioncube": {
+                            "type": "boolean",
+                            "default": false
+                          },
+                          "sqlsrv": {
+                            "type": "boolean",
+                            "default": false
+                          }
+                        },
+                        "additionalProperties": false
+                      },
+                      "nodejs": {
+                        "type": "object",
+                        "properties": {
+                          "version": {
+                            "type": "string",
+                            "default": "24"
+                          },
+                          "yarn": {
+                            "type": "boolean",
+                            "default": false
+                          },
+                          "pnpm": {
+                            "type": "boolean",
+                            "default": false
+                          },
+                          "enabled": {
+                            "type": "boolean",
+                            "default": true
+                          }
+                        },
+                        "additionalProperties": false
+                      },
+                      "nginx": {
+                        "type": "object",
+                        "properties": {
+                          "rootDocument": {
+                            "type": "string",
+                            "default": "/code"
+                          },
+                          "config": {
+                            "type": "string",
+                            "default": "server {\n\tlisten 80 default_server;\n\tlisten [::]:80 default_server;\n\n\troot {{ document_root }};\n\n\tindex index.php index.html;\n\n\tserver_name _;\n\n\tlocation / {\n\t\ttry_files $uri $uri/ =404;\n\t}\n\n\tlocation ~ .php$ {\n\t\tinclude snippets/fastcgi-php.conf;\n\t\tfastcgi_pass {{ fpm_socket }};\n\t}\n}"
+                          },
+                          "enabled": {
+                            "type": "boolean",
+                            "default": true
+                          }
+                        },
+                        "additionalProperties": false
+                      },
+                      "python": {
+                        "type": "object",
+                        "properties": {
+                          "version": {
+                            "type": "string",
+                            "default": "3"
+                          },
+                          "enabled": {
+                            "type": "boolean",
+                            "default": false
+                          }
+                        },
+                        "additionalProperties": false
+                      },
+                      "ruby": {
+                        "type": "object",
+                        "properties": {
+                          "version": {
+                            "type": "string",
+                            "default": "2.6"
+                          },
+                          "enabled": {
+                            "type": "boolean",
+                            "default": false
+                          }
+                        },
+                        "additionalProperties": false
+                      },
+                      "env": {
+                        "type": "object",
+                        "properties": {
+                          "content": {
+                            "type": "string",
+                            "default": ""
+                          }
+                        },
+                        "additionalProperties": false
+                      },
+                      "presetKey": {
+                        "type": "string"
+                      }
+                    },
+                    "required": [
+                      "projectName",
+                      "serviceName"
+                    ],
+                    "additionalProperties": false
+                  }
+                },
+                "required": [
+                  "json"
+                ],
+                "additionalProperties": false
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/trpc/services.box.initService": {
+      "post": {
+        "operationId": "services.box.initService",
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ],
+        "tags": [
+          "Services / Box"
+        ],
+        "responses": {
+          "200": {
+            "description": ""
+          }
+        },
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "json": {
+                    "type": "object",
+                    "properties": {
+                      "projectName": {
+                        "type": "string",
+                        "pattern": "^[a-z0-9-_]+$"
+                      },
+                      "serviceName": {
+                        "type": "string",
+                        "pattern": "^[a-z0-9-_]+$"
+                      },
+                      "git": {
+                        "type": "object",
+                        "properties": {
+                          "name": {
+                            "type": "string"
+                          },
+                          "email": {
+                            "type": "string"
+                          },
+                          "url": {
+                            "type": "string"
+                          },
+                          "branch": {
+                            "type": "string"
+                          }
+                        },
+                        "additionalProperties": false
+                      },
+                      "private": {
+                        "type": "boolean",
+                        "default": true
+                      }
+                    },
+                    "required": [
+                      "projectName",
+                      "serviceName"
+                    ],
+                    "additionalProperties": false
+                  }
+                },
+                "required": [
+                  "json"
+                ],
+                "additionalProperties": false
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/trpc/services.box.updateProcesses": {
+      "post": {
+        "operationId": "services.box.updateProcesses",
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ],
+        "tags": [
+          "Services / Box"
+        ],
+        "responses": {
+          "200": {
+            "description": ""
+          }
+        },
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "json": {
+                    "type": "object",
+                    "properties": {
+                      "projectName": {
+                        "type": "string",
+                        "pattern": "^[a-z0-9-_]+$"
+                      },
+                      "serviceName": {
+                        "type": "string",
+                        "pattern": "^[a-z0-9-_]+$"
+                      },
+                      "processes": {
+                        "type": "array",
+                        "items": {
+                          "type": "object",
+                          "properties": {
+                            "name": {
+                              "type": "string",
+                              "pattern": "^[a-z0-9-_]+$"
+                            },
+                            "command": {
+                              "type": "string"
+                            },
+                            "directory": {
+                              "type": "string"
+                            },
+                            "enabled": {
+                              "type": "boolean"
+                            }
+                          },
+                          "required": [
+                            "name",
+                            "command",
+                            "directory",
+                            "enabled"
+                          ],
+                          "additionalProperties": false
+                        },
+                        "default": []
+                      }
+                    },
+                    "required": [
+                      "projectName",
+                      "serviceName"
+                    ],
+                    "additionalProperties": false
+                  }
+                },
+                "required": [
+                  "json"
+                ],
+                "additionalProperties": false
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/trpc/services.box.runScript": {
+      "post": {
+        "operationId": "services.box.runScript",
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ],
+        "tags": [
+          "Services / Box"
+        ],
+        "responses": {
+          "200": {
+            "description": ""
+          }
+        },
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "json": {
+                    "type": "object",
+                    "properties": {
+                      "projectName": {
+                        "type": "string",
+                        "pattern": "^[a-z0-9-_]+$"
+                      },
+                      "serviceName": {
+                        "type": "string",
+                        "pattern": "^[a-z0-9-_]+$"
+                      },
+                      "name": {
+                        "type": "string"
+                      },
+                      "content": {
+                        "type": "string"
+                      }
+                    },
+                    "required": [
+                      "projectName",
+                      "serviceName",
+                      "name",
+                      "content"
+                    ],
+                    "additionalProperties": false
+                  }
+                },
+                "required": [
+                  "json"
+                ],
+                "additionalProperties": false
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/trpc/services.box.updateScripts": {
+      "post": {
+        "operationId": "services.box.updateScripts",
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ],
+        "tags": [
+          "Services / Box"
+        ],
+        "responses": {
+          "200": {
+            "description": ""
+          }
+        },
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "json": {
+                    "type": "object",
+                    "properties": {
+                      "projectName": {
+                        "type": "string",
+                        "pattern": "^[a-z0-9-_]+$"
+                      },
+                      "serviceName": {
+                        "type": "string",
+                        "pattern": "^[a-z0-9-_]+$"
+                      },
+                      "scripts": {
+                        "type": "array",
+                        "items": {
+                          "type": "object",
+                          "properties": {
+                            "name": {
+                              "type": "string"
+                            },
+                            "content": {
+                              "type": "string"
+                            },
+                            "webhookToken": {
+                              "type": "string"
+                            },
+                            "schedule": {
+                              "type": "string"
+                            },
+                            "enabled": {
+                              "type": "boolean"
+                            }
+                          },
+                          "required": [
+                            "name",
+                            "content",
+                            "webhookToken",
+                            "enabled"
+                          ],
+                          "additionalProperties": false
+                        },
+                        "default": []
+                      }
+                    },
+                    "required": [
+                      "projectName",
+                      "serviceName"
+                    ],
+                    "additionalProperties": false
+                  }
+                },
+                "required": [
+                  "json"
+                ],
+                "additionalProperties": false
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/trpc/services.box.destroyService": {
+      "post": {
+        "operationId": "services.box.destroyService",
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ],
+        "tags": [
+          "Services / Box"
+        ],
+        "responses": {
+          "200": {
+            "description": ""
+          }
+        },
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "json": {
+                    "type": "object",
+                    "properties": {
+                      "projectName": {
+                        "type": "string",
+                        "pattern": "^[a-z0-9-_]+$"
+                      },
+                      "serviceName": {
+                        "type": "string",
+                        "pattern": "^[a-z0-9-_]+$"
+                      }
+                    },
+                    "required": [
+                      "projectName",
+                      "serviceName"
+                    ],
+                    "additionalProperties": false
+                  }
+                },
+                "required": [
+                  "json"
+                ],
+                "additionalProperties": false
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/trpc/services.box.gitClone": {
+      "post": {
+        "operationId": "services.box.gitClone",
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ],
+        "tags": [
+          "Services / Box"
+        ],
+        "responses": {
+          "200": {
+            "description": ""
+          }
+        },
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "json": {
+                    "type": "object",
+                    "properties": {
+                      "projectName": {
+                        "type": "string",
+                        "pattern": "^[a-z0-9-_]+$"
+                      },
+                      "serviceName": {
+                        "type": "string",
+                        "pattern": "^[a-z0-9-_]+$"
+                      },
+                      "url": {
+                        "type": "string"
+                      },
+                      "branch": {
+                        "type": "string"
+                      },
+                      "private": {
+                        "type": "boolean",
+                        "default": true
+                      }
+                    },
+                    "required": [
+                      "projectName",
+                      "serviceName",
+                      "url",
+                      "branch"
+                    ],
+                    "additionalProperties": false
+                  }
+                },
+                "required": [
+                  "json"
+                ],
+                "additionalProperties": false
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/trpc/services.box.updateGitConfig": {
+      "post": {
+        "operationId": "services.box.updateGitConfig",
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ],
+        "tags": [
+          "Services / Box"
+        ],
+        "responses": {
+          "200": {
+            "description": ""
+          }
+        },
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "json": {
+                    "type": "object",
+                    "properties": {
+                      "projectName": {
+                        "type": "string",
+                        "pattern": "^[a-z0-9-_]+$"
+                      },
+                      "serviceName": {
+                        "type": "string",
+                        "pattern": "^[a-z0-9-_]+$"
+                      },
+                      "name": {
+                        "type": "string"
+                      },
+                      "email": {
+                        "type": "string"
+                      }
+                    },
+                    "required": [
+                      "projectName",
+                      "serviceName",
+                      "name",
+                      "email"
+                    ],
+                    "additionalProperties": false
+                  }
+                },
+                "required": [
+                  "json"
+                ],
+                "additionalProperties": false
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/trpc/services.box.refreshDeployToken": {
+      "post": {
+        "operationId": "services.box.refreshDeployToken",
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ],
+        "tags": [
+          "Services / Box"
+        ],
+        "responses": {
+          "200": {
+            "description": ""
+          }
+        },
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "json": {
+                    "type": "object",
+                    "properties": {
+                      "serviceName": {
+                        "type": "string",
+                        "pattern": "^[a-z0-9-_]+$"
+                      },
+                      "projectName": {
+                        "type": "string",
+                        "pattern": "^[a-z0-9-_]+$"
+                      }
+                    },
+                    "required": [
+                      "serviceName",
+                      "projectName"
+                    ],
+                    "additionalProperties": false
+                  }
+                },
+                "required": [
+                  "json"
+                ],
+                "additionalProperties": false
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/trpc/services.box.rebuildDockerImage": {
+      "post": {
+        "operationId": "services.box.rebuildDockerImage",
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ],
+        "tags": [
+          "Services / Box"
+        ],
+        "responses": {
+          "200": {
+            "description": ""
+          }
+        },
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "json": {
+                    "type": "object",
+                    "properties": {
+                      "projectName": {
+                        "type": "string",
+                        "pattern": "^[a-z0-9-_]+$"
+                      },
+                      "serviceName": {
+                        "type": "string",
+                        "pattern": "^[a-z0-9-_]+$"
+                      }
+                    },
+                    "required": [
+                      "projectName",
+                      "serviceName"
+                    ],
+                    "additionalProperties": false
+                  }
+                },
+                "required": [
+                  "json"
+                ],
+                "additionalProperties": false
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/trpc/services.box.updateDeployScript": {
+      "post": {
+        "operationId": "services.box.updateDeployScript",
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ],
+        "tags": [
+          "Services / Box"
+        ],
+        "responses": {
+          "200": {
+            "description": ""
+          }
+        },
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "json": {
+                    "type": "object",
+                    "properties": {
+                      "projectName": {
+                        "type": "string",
+                        "pattern": "^[a-z0-9-_]+$"
+                      },
+                      "serviceName": {
+                        "type": "string",
+                        "pattern": "^[a-z0-9-_]+$"
+                      },
+                      "deployment": {
+                        "type": "object",
+                        "properties": {
+                          "script": {
+                            "type": "string",
+                            "default": ""
+                          },
+                          "token": {
+                            "type": "string",
+                            "default": "2a8c16c828a092f058e6"
+                          }
+                        },
+                        "additionalProperties": false,
+                        "default": {}
+                      }
+                    },
+                    "required": [
+                      "projectName",
+                      "serviceName"
+                    ],
+                    "additionalProperties": false
+                  }
+                },
+                "required": [
+                  "json"
+                ],
+                "additionalProperties": false
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/trpc/services.box.updateRedirects": {
+      "post": {
+        "operationId": "services.box.updateRedirects",
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ],
+        "tags": [
+          "Services / Box"
+        ],
+        "responses": {
+          "200": {
+            "description": ""
+          }
+        },
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "json": {
+                    "type": "object",
+                    "properties": {
+                      "projectName": {
+                        "type": "string",
+                        "pattern": "^[a-z0-9-_]+$"
+                      },
+                      "serviceName": {
+                        "type": "string",
+                        "pattern": "^[a-z0-9-_]+$"
+                      },
+                      "redirects": {
+                        "type": "array",
+                        "items": {
+                          "type": "object",
+                          "properties": {
+                            "regex": {
+                              "type": "string"
+                            },
+                            "replacement": {
+                              "type": "string"
+                            },
+                            "permanent": {
+                              "type": "boolean"
+                            },
+                            "enabled": {
+                              "type": "boolean"
+                            }
+                          },
+                          "required": [
+                            "regex",
+                            "replacement",
+                            "permanent",
+                            "enabled"
+                          ],
+                          "additionalProperties": false
+                        },
+                        "default": []
+                      }
+                    },
+                    "required": [
+                      "projectName",
+                      "serviceName"
+                    ],
+                    "additionalProperties": false
+                  }
+                },
+                "required": [
+                  "json"
+                ],
+                "additionalProperties": false
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/trpc/services.box.updateBasicAuth": {
+      "post": {
+        "operationId": "services.box.updateBasicAuth",
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ],
+        "tags": [
+          "Services / Box"
+        ],
+        "responses": {
+          "200": {
+            "description": ""
+          }
+        },
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "json": {
+                    "type": "object",
+                    "properties": {
+                      "projectName": {
+                        "type": "string",
+                        "pattern": "^[a-z0-9-_]+$"
+                      },
+                      "serviceName": {
+                        "type": "string",
+                        "pattern": "^[a-z0-9-_]+$"
+                      },
+                      "basicAuth": {
+                        "type": "array",
+                        "items": {
+                          "type": "object",
+                          "properties": {
+                            "username": {
+                              "type": "string"
+                            },
+                            "password": {
+                              "type": "string"
+                            }
+                          },
+                          "required": [
+                            "username",
+                            "password"
+                          ],
+                          "additionalProperties": false
+                        },
+                        "default": []
+                      }
+                    },
+                    "required": [
+                      "projectName",
+                      "serviceName"
+                    ],
+                    "additionalProperties": false
+                  }
+                },
+                "required": [
+                  "json"
+                ],
+                "additionalProperties": false
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/trpc/services.box.updateModules": {
+      "post": {
+        "operationId": "services.box.updateModules",
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ],
+        "tags": [
+          "Services / Box"
+        ],
+        "responses": {
+          "200": {
+            "description": ""
+          }
+        },
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "json": {
+                    "type": "object",
+                    "properties": {
+                      "projectName": {
+                        "type": "string",
+                        "pattern": "^[a-z0-9-_]+$"
+                      },
+                      "serviceName": {
+                        "type": "string",
+                        "pattern": "^[a-z0-9-_]+$"
+                      },
+                      "modules": {
+                        "type": "object",
+                        "properties": {
+                          "ide": {
+                            "type": "boolean",
+                            "default": false
+                          },
+                          "advanced": {
+                            "type": "boolean",
+                            "default": false
+                          },
+                          "php": {
+                            "type": "boolean",
+                            "default": false
+                          },
+                          "nodejs": {
+                            "type": "boolean",
+                            "default": false
+                          },
+                          "nginx": {
+                            "type": "boolean",
+                            "default": false
+                          },
+                          "python": {
+                            "type": "boolean",
+                            "default": false
+                          },
+                          "ruby": {
+                            "type": "boolean",
+                            "default": false
+                          },
+                          "deployments": {
+                            "type": "boolean",
+                            "default": false
+                          },
+                          "git": {
+                            "type": "boolean",
+                            "default": false
+                          },
+                          "domains": {
+                            "type": "boolean",
+                            "default": false
+                          },
+                          "redirects": {
+                            "type": "boolean",
+                            "default": false
+                          },
+                          "basicAuth": {
+                            "type": "boolean",
+                            "default": false
+                          },
+                          "mounts": {
+                            "type": "boolean",
+                            "default": false
+                          },
+                          "processes": {
+                            "type": "boolean",
+                            "default": false
+                          },
+                          "scripts": {
+                            "type": "boolean",
+                            "default": false
+                          },
+                          "ports": {
+                            "type": "boolean",
+                            "default": false
+                          },
+                          "resources": {
+                            "type": "boolean",
+                            "default": false
+                          },
+                          "env": {
+                            "type": "boolean",
+                            "default": false
+                          }
+                        },
+                        "additionalProperties": false,
+                        "default": {}
+                      }
+                    },
+                    "required": [
+                      "projectName",
+                      "serviceName"
+                    ],
+                    "additionalProperties": false
+                  }
+                },
+                "required": [
+                  "json"
+                ],
+                "additionalProperties": false
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/trpc/services.box.updateIde": {
+      "post": {
+        "operationId": "services.box.updateIde",
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ],
+        "tags": [
+          "Services / Box"
+        ],
+        "responses": {
+          "200": {
+            "description": ""
+          }
+        },
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "json": {
+                    "type": "object",
+                    "properties": {
+                      "projectName": {
+                        "type": "string",
+                        "pattern": "^[a-z0-9-_]+$"
+                      },
+                      "serviceName": {
+                        "type": "string",
+                        "pattern": "^[a-z0-9-_]+$"
+                      },
+                      "ide": {
+                        "type": "object",
+                        "properties": {
+                          "defaultFolder": {
+                            "type": "string",
+                            "default": "/code"
+                          },
+                          "token": {
+                            "type": "string",
+                            "default": "ffb38f1515ef41071867"
+                          },
+                          "enabled": {
+                            "type": "boolean",
+                            "default": true
+                          }
+                        },
+                        "additionalProperties": false
+                      }
+                    },
+                    "required": [
+                      "projectName",
+                      "serviceName"
+                    ],
+                    "additionalProperties": false
+                  }
+                },
+                "required": [
+                  "json"
+                ],
+                "additionalProperties": false
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/trpc/services.box.updateAdvanced": {
+      "post": {
+        "operationId": "services.box.updateAdvanced",
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ],
+        "tags": [
+          "Services / Box"
+        ],
+        "responses": {
+          "200": {
+            "description": ""
+          }
+        },
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "json": {
+                    "type": "object",
+                    "properties": {
+                      "projectName": {
+                        "type": "string",
+                        "pattern": "^[a-z0-9-_]+$"
+                      },
+                      "serviceName": {
+                        "type": "string",
+                        "pattern": "^[a-z0-9-_]+$"
+                      },
+                      "advanced": {
+                        "type": "object",
+                        "properties": {
+                          "buildScript": {
+                            "type": "string",
+                            "default": ""
+                          },
+                          "startScript": {
+                            "type": "string",
+                            "default": ""
+                          }
+                        },
+                        "additionalProperties": false
+                      }
+                    },
+                    "required": [
+                      "projectName",
+                      "serviceName"
+                    ],
+                    "additionalProperties": false
+                  }
+                },
+                "required": [
+                  "json"
+                ],
+                "additionalProperties": false
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/trpc/services.box.updatePhp": {
+      "post": {
+        "operationId": "services.box.updatePhp",
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ],
+        "tags": [
+          "Services / Box"
+        ],
+        "responses": {
+          "200": {
+            "description": ""
+          }
+        },
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "json": {
+                    "type": "object",
+                    "properties": {
+                      "projectName": {
+                        "type": "string",
+                        "pattern": "^[a-z0-9-_]+$"
+                      },
+                      "serviceName": {
+                        "type": "string",
+                        "pattern": "^[a-z0-9-_]+$"
+                      },
+                      "php": {
+                        "type": "object",
+                        "properties": {
+                          "version": {
+                            "type": "string",
+                            "default": "8.3"
+                          },
+                          "maxUploadSize": {
+                            "type": "string",
+                            "default": "128M"
+                          },
+                          "maxExecutionTime": {
+                            "type": "string",
+                            "default": "30"
+                          },
+                          "opcache": {
+                            "type": "boolean",
+                            "default": true
+                          },
+                          "phpIni": {
+                            "type": "string",
+                            "default": ""
+                          },
+                          "enabled": {
+                            "type": "boolean",
+                            "default": true
+                          },
+                          "ioncube": {
+                            "type": "boolean",
+                            "default": false
+                          },
+                          "sqlsrv": {
+                            "type": "boolean",
+                            "default": false
+                          }
+                        },
+                        "additionalProperties": false
+                      }
+                    },
+                    "required": [
+                      "projectName",
+                      "serviceName"
+                    ],
+                    "additionalProperties": false
+                  }
+                },
+                "required": [
+                  "json"
+                ],
+                "additionalProperties": false
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/trpc/services.box.updateNodejs": {
+      "post": {
+        "operationId": "services.box.updateNodejs",
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ],
+        "tags": [
+          "Services / Box"
+        ],
+        "responses": {
+          "200": {
+            "description": ""
+          }
+        },
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "json": {
+                    "type": "object",
+                    "properties": {
+                      "projectName": {
+                        "type": "string",
+                        "pattern": "^[a-z0-9-_]+$"
+                      },
+                      "serviceName": {
+                        "type": "string",
+                        "pattern": "^[a-z0-9-_]+$"
+                      },
+                      "nodejs": {
+                        "type": "object",
+                        "properties": {
+                          "version": {
+                            "type": "string",
+                            "default": "24"
+                          },
+                          "yarn": {
+                            "type": "boolean",
+                            "default": false
+                          },
+                          "pnpm": {
+                            "type": "boolean",
+                            "default": false
+                          },
+                          "enabled": {
+                            "type": "boolean",
+                            "default": true
+                          }
+                        },
+                        "additionalProperties": false
+                      }
+                    },
+                    "required": [
+                      "projectName",
+                      "serviceName"
+                    ],
+                    "additionalProperties": false
+                  }
+                },
+                "required": [
+                  "json"
+                ],
+                "additionalProperties": false
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/trpc/services.box.updateNginx": {
+      "post": {
+        "operationId": "services.box.updateNginx",
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ],
+        "tags": [
+          "Services / Box"
+        ],
+        "responses": {
+          "200": {
+            "description": ""
+          }
+        },
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "json": {
+                    "type": "object",
+                    "properties": {
+                      "projectName": {
+                        "type": "string",
+                        "pattern": "^[a-z0-9-_]+$"
+                      },
+                      "serviceName": {
+                        "type": "string",
+                        "pattern": "^[a-z0-9-_]+$"
+                      },
+                      "nginx": {
+                        "type": "object",
+                        "properties": {
+                          "rootDocument": {
+                            "type": "string",
+                            "default": "/code"
+                          },
+                          "config": {
+                            "type": "string",
+                            "default": "server {\n\tlisten 80 default_server;\n\tlisten [::]:80 default_server;\n\n\troot {{ document_root }};\n\n\tindex index.php index.html;\n\n\tserver_name _;\n\n\tlocation / {\n\t\ttry_files $uri $uri/ =404;\n\t}\n\n\tlocation ~ .php$ {\n\t\tinclude snippets/fastcgi-php.conf;\n\t\tfastcgi_pass {{ fpm_socket }};\n\t}\n}"
+                          },
+                          "enabled": {
+                            "type": "boolean",
+                            "default": true
+                          }
+                        },
+                        "additionalProperties": false
+                      }
+                    },
+                    "required": [
+                      "projectName",
+                      "serviceName"
+                    ],
+                    "additionalProperties": false
+                  }
+                },
+                "required": [
+                  "json"
+                ],
+                "additionalProperties": false
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/trpc/services.box.updatePython": {
+      "post": {
+        "operationId": "services.box.updatePython",
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ],
+        "tags": [
+          "Services / Box"
+        ],
+        "responses": {
+          "200": {
+            "description": ""
+          }
+        },
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "json": {
+                    "type": "object",
+                    "properties": {
+                      "projectName": {
+                        "type": "string",
+                        "pattern": "^[a-z0-9-_]+$"
+                      },
+                      "serviceName": {
+                        "type": "string",
+                        "pattern": "^[a-z0-9-_]+$"
+                      },
+                      "python": {
+                        "type": "object",
+                        "properties": {
+                          "version": {
+                            "type": "string",
+                            "default": "3"
+                          },
+                          "enabled": {
+                            "type": "boolean",
+                            "default": false
+                          }
+                        },
+                        "additionalProperties": false
+                      }
+                    },
+                    "required": [
+                      "projectName",
+                      "serviceName"
+                    ],
+                    "additionalProperties": false
+                  }
+                },
+                "required": [
+                  "json"
+                ],
+                "additionalProperties": false
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/trpc/services.box.updateRuby": {
+      "post": {
+        "operationId": "services.box.updateRuby",
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ],
+        "tags": [
+          "Services / Box"
+        ],
+        "responses": {
+          "200": {
+            "description": ""
+          }
+        },
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "json": {
+                    "type": "object",
+                    "properties": {
+                      "projectName": {
+                        "type": "string",
+                        "pattern": "^[a-z0-9-_]+$"
+                      },
+                      "serviceName": {
+                        "type": "string",
+                        "pattern": "^[a-z0-9-_]+$"
+                      },
+                      "ruby": {
+                        "type": "object",
+                        "properties": {
+                          "version": {
+                            "type": "string",
+                            "default": "2.6"
+                          },
+                          "enabled": {
+                            "type": "boolean",
+                            "default": false
+                          }
+                        },
+                        "additionalProperties": false
+                      }
+                    },
+                    "required": [
+                      "projectName",
+                      "serviceName"
+                    ],
+                    "additionalProperties": false
+                  }
+                },
+                "required": [
+                  "json"
+                ],
+                "additionalProperties": false
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/trpc/services.box.updateEnv": {
+      "post": {
+        "operationId": "services.box.updateEnv",
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ],
+        "tags": [
+          "Services / Box"
+        ],
+        "responses": {
+          "200": {
+            "description": ""
+          }
+        },
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "json": {
+                    "type": "object",
+                    "properties": {
+                      "projectName": {
+                        "type": "string",
+                        "pattern": "^[a-z0-9-_]+$"
+                      },
+                      "serviceName": {
+                        "type": "string",
+                        "pattern": "^[a-z0-9-_]+$"
+                      },
+                      "env": {
+                        "type": "object",
+                        "properties": {
+                          "content": {
+                            "type": "string",
+                            "default": ""
+                          }
+                        },
+                        "additionalProperties": false
+                      }
+                    },
+                    "required": [
+                      "projectName",
+                      "serviceName"
+                    ],
+                    "additionalProperties": false
+                  }
+                },
+                "required": [
+                  "json"
+                ],
+                "additionalProperties": false
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/trpc/services.box.runDeployScript": {
+      "post": {
+        "operationId": "services.box.runDeployScript",
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ],
+        "tags": [
+          "Services / Box"
+        ],
+        "responses": {
+          "200": {
+            "description": ""
+          }
+        },
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "json": {
+                    "type": "object",
+                    "properties": {
+                      "projectName": {
+                        "type": "string",
+                        "pattern": "^[a-z0-9-_]+$"
+                      },
+                      "serviceName": {
+                        "type": "string",
+                        "pattern": "^[a-z0-9-_]+$"
+                      }
+                    },
+                    "required": [
+                      "projectName",
+                      "serviceName"
+                    ],
+                    "additionalProperties": false
+                  }
+                },
+                "required": [
+                  "json"
+                ],
+                "additionalProperties": false
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/trpc/services.box.loadPreset": {
+      "post": {
+        "operationId": "services.box.loadPreset",
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ],
+        "tags": [
+          "Services / Box"
+        ],
+        "responses": {
+          "200": {
+            "description": ""
+          }
+        },
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "json": {
+                    "type": "object",
+                    "properties": {
+                      "projectName": {
+                        "type": "string",
+                        "pattern": "^[a-z0-9-_]+$"
+                      },
+                      "serviceName": {
+                        "type": "string",
+                        "pattern": "^[a-z0-9-_]+$"
+                      },
+                      "presetKey": {
+                        "type": "string"
+                      }
+                    },
+                    "required": [
+                      "projectName",
+                      "serviceName",
+                      "presetKey"
+                    ],
+                    "additionalProperties": false
+                  }
+                },
+                "required": [
+                  "json"
+                ],
+                "additionalProperties": false
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/trpc/services.box.startService": {
+      "post": {
+        "operationId": "services.box.startService",
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ],
+        "tags": [
+          "Services / Box"
+        ],
+        "responses": {
+          "200": {
+            "description": ""
+          }
+        },
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "json": {
+                    "type": "object",
+                    "properties": {
+                      "projectName": {
+                        "type": "string",
+                        "pattern": "^[a-z0-9-_]+$"
+                      },
+                      "serviceName": {
+                        "type": "string",
+                        "pattern": "^[a-z0-9-_]+$"
+                      }
+                    },
+                    "required": [
+                      "projectName",
+                      "serviceName"
+                    ],
+                    "additionalProperties": false
+                  }
+                },
+                "required": [
+                  "json"
+                ],
+                "additionalProperties": false
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/trpc/services.box.stopService": {
+      "post": {
+        "operationId": "services.box.stopService",
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ],
+        "tags": [
+          "Services / Box"
+        ],
+        "responses": {
+          "200": {
+            "description": ""
+          }
+        },
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "json": {
+                    "type": "object",
+                    "properties": {
+                      "projectName": {
+                        "type": "string",
+                        "pattern": "^[a-z0-9-_]+$"
+                      },
+                      "serviceName": {
+                        "type": "string",
+                        "pattern": "^[a-z0-9-_]+$"
+                      }
+                    },
+                    "required": [
+                      "projectName",
+                      "serviceName"
+                    ],
+                    "additionalProperties": false
+                  }
+                },
+                "required": [
+                  "json"
+                ],
+                "additionalProperties": false
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/trpc/services.box.restartService": {
+      "post": {
+        "operationId": "services.box.restartService",
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ],
+        "tags": [
+          "Services / Box"
+        ],
+        "responses": {
+          "200": {
+            "description": ""
+          }
+        },
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "json": {
+                    "type": "object",
+                    "properties": {
+                      "projectName": {
+                        "type": "string",
+                        "pattern": "^[a-z0-9-_]+$"
+                      },
+                      "serviceName": {
+                        "type": "string",
+                        "pattern": "^[a-z0-9-_]+$"
+                      }
+                    },
+                    "required": [
+                      "projectName",
+                      "serviceName"
+                    ],
+                    "additionalProperties": false
+                  }
+                },
+                "required": [
+                  "json"
+                ],
+                "additionalProperties": false
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/trpc/services.box.updateResources": {
+      "post": {
+        "operationId": "services.box.updateResources",
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ],
+        "tags": [
+          "Services / Box"
+        ],
+        "responses": {
+          "200": {
+            "description": ""
+          }
+        },
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "json": {
+                    "type": "object",
+                    "properties": {
+                      "projectName": {
+                        "type": "string",
+                        "pattern": "^[a-z0-9-_]+$"
+                      },
+                      "serviceName": {
+                        "type": "string",
+                        "pattern": "^[a-z0-9-_]+$"
+                      },
+                      "resources": {
+                        "type": "object",
+                        "properties": {
+                          "memoryReservation": {
+                            "type": "number"
+                          },
+                          "memoryLimit": {
+                            "type": "number"
+                          },
+                          "cpuReservation": {
+                            "type": "number"
+                          },
+                          "cpuLimit": {
+                            "type": "number"
+                          }
+                        },
+                        "required": [
+                          "memoryReservation",
+                          "memoryLimit",
+                          "cpuReservation",
+                          "cpuLimit"
+                        ],
+                        "additionalProperties": false
+                      }
+                    },
+                    "required": [
+                      "projectName",
+                      "serviceName"
+                    ],
+                    "additionalProperties": false
+                  }
+                },
+                "required": [
+                  "json"
+                ],
+                "additionalProperties": false
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}
