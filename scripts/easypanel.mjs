@@ -1,6 +1,9 @@
 #!/usr/bin/env node
 // Thin Easypanel tRPC client. Usage:
 //   node easypanel.mjs <procedure> [json-input] [--query|--mutation]
+//   node easypanel.mjs <procedure> --file <path>     # read JSON from file
+//   node easypanel.mjs <procedure> --stdin           # read JSON from stdin
+//   node easypanel.mjs <procedure> key=value ...     # key=value pairs (values parsed as JSON when possible)
 //
 // Env:
 //   EASYPANEL_URL   e.g. https://panel.example.com
@@ -37,14 +40,60 @@ if (!URL_BASE || !TOKEN) {
 const args = process.argv.slice(2);
 const flags = new Set(args.filter((a) => a.startsWith("--")));
 const positional = args.filter((a) => !a.startsWith("--"));
-const [procedure, rawInput] = positional;
+const [procedure, ...restPositionals] = positional;
 
 if (!procedure) {
-  console.error("Usage: easypanel.mjs <procedure> [json-input] [--query|--mutation]");
+  console.error("Usage: easypanel.mjs <procedure> [json-input|--file <path>|--stdin|key=value ...] [--query|--mutation]");
   process.exit(2);
 }
 
-const input = rawInput ? JSON.parse(rawInput) : undefined;
+let input;
+
+// 1. --file flag: read JSON from file
+const fileFlagIndex = args.indexOf("--file");
+if (fileFlagIndex !== -1 && args[fileFlagIndex + 1]) {
+  const filePath = args[fileFlagIndex + 1];
+  try {
+    input = JSON.parse(readFileSync(filePath, "utf8"));
+  } catch (e) {
+    console.error(`Failed to read/parse JSON from file ${filePath}: ${e.message}`);
+    process.exit(2);
+  }
+}
+// 2. --stdin flag: read JSON from stdin
+else if (flags.has("--stdin")) {
+  try {
+    const stdinBuffer = readFileSync(0, "utf8"); // 0 = stdin
+    input = JSON.parse(stdinBuffer);
+  } catch (e) {
+    console.error(`Failed to read/parse JSON from stdin: ${e.message}`);
+    process.exit(2);
+  }
+}
+// 3. key=value pairs: build object from positional args
+else if (restPositionals.length > 0 && restPositionals.every((a) => a.includes("="))) {
+  input = {};
+  for (const pair of restPositionals) {
+    const [key, ...valueParts] = pair.split("=");
+    const valueStr = valueParts.join("="); // handle values with = in them
+    try {
+      input[key] = JSON.parse(valueStr);
+    } catch {
+      input[key] = valueStr; // fallback to string
+    }
+  }
+}
+// 4. Single raw JSON arg (fallback for bash users)
+else if (restPositionals.length === 1) {
+  const rawInput = restPositionals[0];
+  try {
+    input = JSON.parse(rawInput);
+  } catch (e) {
+    console.error(`Invalid JSON input: ${e.message}`);
+    console.error(`Input received: ${rawInput}`);
+    process.exit(2);
+  }
+}
 
 // Heuristic: procedures starting with these verbs are queries; everything else is a mutation.
 // Override with --query / --mutation.

@@ -39,11 +39,20 @@ the script captures password input with echo suppressed and writes directly to d
 Use the helper `scripts/easypanel.mjs`:
 
 ```bash
-node scripts/easypanel.mjs <procedure> '<json-input>'
-# e.g.
+# Key=value pairs (recommended — no JSON quoting issues)
+node scripts/easypanel.mjs projects.createProject name=blog
+node scripts/easypanel.mjs services.app.deployService projectName=blog serviceName=web
+node scripts/easypanel.mjs services.app.inspectService projectName=blog serviceName=web
+
+# From stdin (pipe JSON)
+echo '{"projectName":"blog","serviceName":"web"}' | node scripts/easypanel.mjs services.app.inspectService --stdin
+
+# From file
+node scripts/easypanel.mjs services.app.inspectService --file input.json
+
+# Raw JSON (bash only — PowerShell strips quotes)
 node scripts/easypanel.mjs projects.listProjects
 node scripts/easypanel.mjs projects.createProject '{"name":"blog"}'
-node scripts/easypanel.mjs services.app.deployService '{"projectName":"blog","serviceName":"web"}'
 ```
 
 tRPC quirks:
