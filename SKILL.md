@@ -181,10 +181,36 @@ Redis-specific extras (`services.redis.*`): `updateCredentials`, `enableDbGate`,
 - **Two Factor**: `twoFactor.configure`, `twoFactor.enable`, `twoFactor.disable`
 
 ### Logs (WebSocket, not tRPC)
-Per samleinav docs:
-- `wss://<panel>/serviceLogs?token=<token>&service=<projectName>_<serviceName>&compose=<0|1>`
 
-Not REST — the 2023 SDK's `logs.getServiceLogs` doesn't exist on current panels. The tRPC helper can't drive this; use a WebSocket client separately.
+Service logs are streamed over a WebSocket the OpenAPI spec doesn't list:
+
+- `wss://<panel>/ws/serviceLogs?token=<token>&service=<projectName>_<serviceName>&compose=<true|false>`
+
+Two surprises vs. the older samleinav docs:
+- Path is `/ws/serviceLogs`, **not** `/serviceLogs` (the bare path returns the panel SPA HTML — confusing because it's a 200 OK).
+- `compose` is boolean string (`true`/`false`), **not** `0`/`1`.
+
+Both the long API token from `~/.easypanel/config.json` and a short-lived session token (from `auth.login`) work as the `token` query param. Frames arrive wrapped: `{"output":"<concatenated newline-separated lines>"}`. On connect the panel sends a short backlog of recent lines, then streams live frames.
+
+Use the bundled helper `scripts/easypanel-logs.mjs`:
+
+```bash
+# Tail telegram-s3/api for 30s (default), printing all lines:
+node scripts/easypanel-logs.mjs telegram-s3 api
+
+# Short tail with a grep filter:
+node scripts/easypanel-logs.mjs telegram-s3 api --duration=10 --grep='ERROR|WARN'
+
+# Compose stack instead of an app service:
+node scripts/easypanel-logs.mjs my-stack web --compose=true
+
+# Skip the backlog, only print lines arriving live after connect:
+node scripts/easypanel-logs.mjs telegram-s3 api --no-history
+```
+
+The helper reads `~/.easypanel/config.json` (same precedence rules as `easypanel.mjs`) for `url` + `token`, prints lines to stdout, and exits 0 on clean disconnect / timeout.
+
+The 2023 SDK's `logs.getServiceLogs` tRPC procedure does NOT exist on current panels — the WebSocket is the only way.
 
 ### Code upload (REST, not tRPC)
 - `POST /api/upload-code/{projectName}/{serviceName}` with multipart `file=<zip>` for deploy-without-git flows.
